@@ -33,6 +33,7 @@ module.exports = {
   plugins: [
     new CopyPlugin([
         { from: 'src/index.html' },
+        { from: 'src/Toolkit.css' }
       ],
     ),
     new webpack.HotModuleReplacementPlugin()
