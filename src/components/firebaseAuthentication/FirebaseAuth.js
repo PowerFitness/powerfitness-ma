@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { firebase } from './firebase';
+import { firebase } from '../../utils/firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import styled from 'styled-components';
 

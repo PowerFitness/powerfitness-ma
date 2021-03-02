@@ -4,7 +4,7 @@ import { NavLink } from '../toolkit/NavLink';
 import { PrimaryButton } from '../toolkit/PrimaryButton'
 import { PrimaryHeader } from '../toolkit/PrimaryHeader';
 import { Modal } from '../toolkit/Modal';
-import Auth from './Auth';
+import Auth from './FirebaseAuth';
 
 const StyledPrimaryHeader = styled(PrimaryHeader)`
     justify-content: space-between;

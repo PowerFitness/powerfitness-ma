@@ -8,8 +8,8 @@ import { SplashPage } from './components/SplashPage';
 import { DashboardPage } from './components/DashboardPage';
 import { MyAccountPage } from './components/MyAccountPage';
 import Header from './components/Header';
-import SignInHeader from './components/firebaseAuthentication/SignInHeader';
-import Auth from './components/firebaseAuthentication/Auth';
+import SignInHeader from './components/firebaseAuthentication/SignIn';
+import Auth from './components/firebaseAuthentication/FirebaseAuth';
 
 export const App = () => 
     <Router>
