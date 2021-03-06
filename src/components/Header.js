@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Link, useLocation} from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const StyledHeader = styled.div`
 padding: 26px 70px;
@@ -16,7 +16,7 @@ height: 22px;
   font-weight: 300;
   line-height: 22px;
   margin-right: 44px;
-  text-decoration: ${props=>props.selected ? "underline" : "none"};
+  text-decoration: ${props=>props.selected ? 'underline' : 'none'};
   &[data-active] {
     color: red;
   }
@@ -30,15 +30,15 @@ const Account = styled(StyledLink)`
 `;
 
 export const Header = () => {
-    const { pathname } = useLocation(); 
+  const { pathname } = useLocation();
 
-    return (<StyledHeader>
+  return (<StyledHeader>
     <Logo to="/dashboard">PowerFitness</Logo>
     <StyledLink selected={pathname=='/dashboard'}  to="/dashboard">Dashboard</StyledLink>
     <StyledLink selected={pathname=='/plan'} to="/plan">Fitness Planning</StyledLink>
     <StyledLink selected={pathname=='/journal'} to="/journal">Daily Journal</StyledLink>
     <Account selected={pathname=='/myAccount'} to="/myAccount">My Account</Account>
-    </StyledHeader>)
+  </StyledHeader>)
 }
-    
+
 export default Header;
