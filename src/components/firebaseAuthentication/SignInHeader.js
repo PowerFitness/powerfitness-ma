@@ -20,7 +20,7 @@ export const SignInHeader = () => {
 
     return (<StyledPrimaryHeader>
         <Logo to="/dashboard">PowerFitness</Logo>
-        <PrimaryButton height="44px" width="120px" onClick={() => toggleOpen(true)}>Log In</PrimaryButton>
+        <PrimaryButton height="34px" width="120px" onClick={() => toggleOpen(true)}>Log In</PrimaryButton>
         <Modal isOpen={isOpen}><Auth/></Modal>
     </StyledPrimaryHeader>)
 }
