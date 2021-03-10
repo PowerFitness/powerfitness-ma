@@ -28,7 +28,8 @@ module.exports = {
   devServer: {
     port: 3000,
     publicPath: "http://localhost:3000/",
-    hotOnly: true
+    hotOnly: true,
+    historyApiFallback: true
   },
   plugins: [
     new CopyPlugin([
