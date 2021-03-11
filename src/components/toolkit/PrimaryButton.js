@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const PrimaryButton = styled.button`
-    height: ${props => props.height};
-    width: ${props => props.width};
+    height: ${props => props.height || '37px'};
+    width: ${props => props.width || '200px'};
     border-radius: 8px;
     border: none;
     background-color: #0081AF;
