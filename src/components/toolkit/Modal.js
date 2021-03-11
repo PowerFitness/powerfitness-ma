@@ -25,7 +25,7 @@ const StyledOverlay = styled.div`
     background-color: rgba(128,128,128,0.5); 
 `;
 
-export const Modal = ({ isOpen, children, ...rest}) => isOpen ? 
+export const Modal = ({ isOpen, children, ... rest }) => isOpen ?
     <StyledOverlay>
         <StyledModal {...rest}>
             {children}

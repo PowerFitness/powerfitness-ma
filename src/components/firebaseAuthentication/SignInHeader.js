@@ -16,7 +16,7 @@ const Logo = styled(NavLink)`
 
 
 export const SignInHeader = () => {
-    const [isOpen, toggleOpen] = useState(false);
+    const [ isOpen, toggleOpen ] = useState(false);
 
     return (<StyledPrimaryHeader>
         <Logo to="/dashboard">PowerFitness</Logo>
@@ -24,5 +24,5 @@ export const SignInHeader = () => {
         <Modal isOpen={isOpen}><Auth/></Modal>
     </StyledPrimaryHeader>)
 }
-    
+
 export default SignInHeader;

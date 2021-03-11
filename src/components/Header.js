@@ -13,15 +13,15 @@ const Account = styled(NavLink)`
 `;
 
 export const Header = () => {
-    const { pathname } = useLocation(); 
+    const { pathname } = useLocation();
 
     return (<PrimaryHeader>
-		<Logo to="/dashboard">PowerFitness</Logo>
-		<NavLink selected={pathname=='/dashboard'}  to="/dashboard">Dashboard</NavLink>
-		<NavLink selected={pathname=='/plan'} to="/plan">Fitness Planning</NavLink>
-		<NavLink selected={pathname=='/journal'} to="/journal">Daily Journal</NavLink>
-		<Account selected={pathname=='/myAccount'} to="/myAccount">My Account</Account>
+        <Logo to="/dashboard">PowerFitness</Logo>
+        <NavLink selected={pathname=='/dashboard'}  to="/dashboard">Dashboard</NavLink>
+        <NavLink selected={pathname=='/plan'} to="/plan">Fitness Planning</NavLink>
+        <NavLink selected={pathname=='/journal'} to="/journal">Daily Journal</NavLink>
+        <Account selected={pathname=='/myAccount'} to="/myAccount">My Account</Account>
     </PrimaryHeader>)
 }
-    
+
 export default Header;
