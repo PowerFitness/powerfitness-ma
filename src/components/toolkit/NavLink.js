@@ -8,7 +8,7 @@ export const NavLink = styled(Link)`
     font-weight: 300;
     line-height: 22px;
     margin-right: 44px;
-    text-decoration: ${props => props.selected ? "underline" : "none"};
+    text-decoration: ${props => props.selected ? 'underline' : 'none'};
     &[data-active] {
         color: red;
     }

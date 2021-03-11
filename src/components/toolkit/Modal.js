@@ -26,8 +26,8 @@ const StyledOverlay = styled.div`
 `;
 
 export const Modal = ({ isOpen, children, ... rest }) => isOpen ?
-  <StyledOverlay>
-    <StyledModal {...rest}>
-      {children}
-    </StyledModal>
-  </StyledOverlay> : null
+    <StyledOverlay>
+        <StyledModal {...rest}>
+            {children}
+        </StyledModal>
+    </StyledOverlay> : null

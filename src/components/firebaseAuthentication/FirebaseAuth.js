@@ -4,12 +4,12 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import styled from 'styled-components';
 
 const uiConfig = {
-  signInFlow: 'popup',
-  signInSuccessUrl: '/dashboard',
-  signInOptions: [
-    firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-  ],
+    signInFlow: 'popup',
+    signInSuccessUrl: '/dashboard',
+    signInOptions: [
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    ],
 };
 
 const StyledFirebaseAuthPF = styled(StyledFirebaseAuth)`
@@ -38,7 +38,7 @@ const StyledFirebaseAuthPF = styled(StyledFirebaseAuth)`
 `;
 
 export const Auth = () => {
-  return <StyledFirebaseAuthPF uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+    return <StyledFirebaseAuthPF uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
 }
 
 export default Auth;

@@ -7,18 +7,13 @@
     "build": "webpack",
     "dev": "NODE_APP_INSTANCE=local webpack-dev-server",
     "test": "jest --coverage",
-    "lint": "lint-staged"
+    "lint": "eslint . --fix"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
+      "pre-commit": "npm run lint",
       "pre-push": "npm run test"
     }
-  },
-  "lint-staged": {
-    "*.{js,jsx, tsx}": [
-      "eslint --quiet"
-    ]
   },
   "repository": {
     "type": "git",

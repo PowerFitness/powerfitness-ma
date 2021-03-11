@@ -16,13 +16,13 @@ const Logo = styled(NavLink)`
 
 
 export const SignInHeader = () => {
-  const [ isOpen, toggleOpen ] = useState(false);
+    const [ isOpen, toggleOpen ] = useState(false);
 
-  return (<StyledPrimaryHeader>
-    <Logo to="/dashboard">PowerFitness</Logo>
-    <PrimaryButton height="34px" width="120px" onClick={() => toggleOpen(true)}>Log In</PrimaryButton>
-    <Modal isOpen={isOpen}><Auth/></Modal>
-  </StyledPrimaryHeader>)
+    return (<StyledPrimaryHeader>
+        <Logo to="/dashboard">PowerFitness</Logo>
+        <PrimaryButton height="34px" width="120px" onClick={() => toggleOpen(true)}>Log In</PrimaryButton>
+        <Modal isOpen={isOpen}><Auth/></Modal>
+    </StyledPrimaryHeader>)
 }
 
 export default SignInHeader;
