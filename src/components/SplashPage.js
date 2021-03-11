@@ -14,8 +14,7 @@ export const SplashPage = () => {
     return <>
         <SignInHeader/>
         <div>PowerFitness Splash Page</div>
-    </> 
-    
+    </>
 }
 
 export default SplashPage;
