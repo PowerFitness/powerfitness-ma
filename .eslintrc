@@ -1,11 +1,12 @@
 {
     "root": true,
+    "parser": "babel-eslint",
     "plugins": [
       "react"
     ],
     "extends": [
       "eslint:recommended",
-      "plugin:react/recommended",
+      "plugin:react/recommended"
     ],
     "parserOptions": {
       "ecmaFeatures": {
@@ -21,6 +22,7 @@
       }
     },
     "rules": {
+      "react/prop-types": 0,
       "no-undef": 0,
       "no-trailing-spaces": 2,
       "no-unexpected-multiline": 2,

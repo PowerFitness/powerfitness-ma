@@ -1,41 +1,42 @@
-const path = require("path");
-const webpack = require("webpack");
-const CopyPlugin = require("copy-webpack-plugin");
+const path = require('path');
+const webpack = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: "./src/index.js",
-  mode: "development",
+  entry: './src/index.js',
+  mode: 'development',
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
-        loader: "babel-loader",
-        options: { presets: ["@babel/env"] }
+        loader: 'babel-loader',
+        options: { presets: [ '@babel/env' ] }
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: [ 'style-loader', 'css-loader' ]
       }
     ]
   },
-  resolve: { extensions: ["*", ".js", ".jsx"] },
+  resolve: { extensions: [ '*', '.js', '.jsx' ] },
   output: {
-    path: path.resolve(__dirname, "dist/"),
-    publicPath: "/",
-    filename: "bundle.js"
+    path: path.resolve(__dirname, 'dist/'),
+    publicPath: '/',
+    filename: 'bundle.js'
   },
   devServer: {
     port: 3000,
-    publicPath: "http://localhost:3000/",
-    hotOnly: true
+    publicPath: 'http://localhost:3000/',
+    hotOnly: true,
+    historyApiFallback: true
   },
   plugins: [
     new CopyPlugin([
-        { from: 'src/index.html' },
-        { from: 'src/Toolkit.css' }
-      ],
+      { from: 'src/index.html' },
+      { from: 'src/Toolkit.css' }
+    ]
     ),
     new webpack.HotModuleReplacementPlugin()
-    ]
+  ]
 };
