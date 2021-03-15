@@ -10,4 +10,5 @@ justify-content: flex-end;
 padding: 0 65px;
 position: sticky;
 top: 54px;
+box-sizing: border-box;
 `;

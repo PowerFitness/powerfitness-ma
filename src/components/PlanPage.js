@@ -4,13 +4,13 @@ import { Text, HeaderText, SubHeader, PrimaryButton, Input } from './toolkit';
 import PropTypes from 'prop-types';
 
 const Motivation = styled.div`
-padding: 30px 64px 0 75px;
+padding: 30px 0 0 75px;
 `
 const Exercise = styled.div`
-padding: 30px 881px 0 74px;
+padding: 30px 0 0 74px;
 `
 const WeeklyExercise = styled.div`
-padding: 13px 45px 13px 0;
+padding: 13px 0 13px 0;
 height:76px;
 width: 285px;
 `
@@ -18,10 +18,10 @@ const ExerciseMinutes = styled.div`
 padding: 13px 0;
 `
 const WaterIntake = styled.div`
-padding: 30px 830px 0 74px;
+padding: 30px 0 0 74px;
 `
 const Nutrition = styled.div`
-padding: 30px 980px 130px 74px;
+padding: 30px 0 130px 74px;
 `
 const TextSide = styled(Text)`
 display: inline;
