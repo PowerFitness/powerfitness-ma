@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Text, HeaderText, SubHeader, PrimaryButton, Input, Modal } from './toolkit';
+import { Text, HeaderText, SubHeader, PrimaryButton, Input } from './toolkit';
 import PropTypes from 'prop-types';
 
 const Motivation = styled.div`
@@ -45,7 +45,6 @@ display: inline;
 height: 47px; 
 width: 80px;
 `
-
 export const PlanPage = ({
     mStatement
 }) =>{

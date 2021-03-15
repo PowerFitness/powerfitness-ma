@@ -9,4 +9,6 @@ export const PrimaryHeader = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    position: sticky;
+    top: 0;
 `;
