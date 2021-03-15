@@ -22,6 +22,6 @@ export const Header = () => {
         <NavLink selected={pathname=='/journal'} to="/journal">Daily Journal</NavLink>
         <Account selected={pathname=='/myAccount'} to="/myAccount">My Account</Account>
     </PrimaryHeader>)
-}
+};
 
 export default Header;
