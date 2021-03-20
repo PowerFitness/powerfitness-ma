@@ -5,7 +5,6 @@ export const PrimaryButton = styled.button`
     width: ${props => props.width || '200px'};
     border-radius: 8px;
     border: none;
-    background-color: #0081AF;
     color: white;
     outline: none;
     cursor: pointer;
@@ -15,5 +14,7 @@ export const PrimaryButton = styled.button`
     font-weight: 300;
     line-height: 22px;
     text-align: center;
+    background-color: ${props => props.disabled? 'lightgrey' : '#0081AF'};
+    pointer-events: ${props => props.disabled? 'none' : 'auto'};
 `;
 
