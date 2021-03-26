@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { isFetchComplete } from '../../selectors/fetchSelectors';
+import { isFetchComplete, isFetchStarted } from '../../selectors/fetchSelectors';
 
 export const actionTypes = {
     fetchStarted: (name) => `fetchStarted/${name}`,
@@ -11,11 +11,12 @@ export const actionTypes = {
 
 export const useFetch = (url, name) => {
     const isComplete = useSelector(isFetchComplete(name));
+    const isStarted = useSelector(isFetchStarted(name));
     const dispatch = useDispatch();
     useEffect(() => {
         (async () => {
             try {
-                if (url && name && !isComplete) {
+                if (url && name && !isComplete && !isStarted) {
                     dispatch({ type: actionTypes.fetchStarted(name), payload: { url, name } });
                     const fetchResponse = await axios.get(url);
                     dispatch({ type: actionTypes.fetchComplete(name), payload: { url, name, data: fetchResponse.data || null } })

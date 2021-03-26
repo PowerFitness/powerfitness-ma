@@ -9,15 +9,15 @@ import { MyAccountPage } from './components/MyAccountPage';
 import Header from './components/Header';
 import AuthObserver from './components/firebaseAuthentication/AuthObserver';
 import ValidateAuthenticated from './components/firebaseAuthentication/ValidateAuthenticated';
-import { usePlanFetch } from './components/fetches/usePlanFetch';
+import Fetches from './components/fetches/Fetches';
 
 export const App = () => {
-    const isPlanFetched = usePlanFetch();
     return (
         <Router>
             <AuthObserver />
             <Route path="/" exact={true} component={SplashPage}/>
             <ValidateAuthenticated>
+                <Fetches />
                 <Route path="/:page" component={Header} />
                 <Route path="/dashboard" component={DashboardPage}/>
                 <Route path="/plan" component={PlanPage}/>
