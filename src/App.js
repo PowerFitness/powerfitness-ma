@@ -9,18 +9,23 @@ import MyAccountPage from './components/MyAccountPage';
 import Header from './components/Header';
 import AuthObserver from './components/firebaseAuthentication/AuthObserver';
 import ValidateAuthenticated from './components/firebaseAuthentication/ValidateAuthenticated';
+import Fetches from './components/fetches/Fetches';
 
-export const App = () =>
-    <Router>
-        <AuthObserver />
-        <Route path="/" exact={true} component={SplashPage}/>
-        <ValidateAuthenticated>
-            <Route path="/:page" component={Header} />
-            <Route path="/dashboard" component={DashboardPage}/>
-            <Route path="/plan" component={PlanPage}/>
-            <Route path="/journal" component={JournalPage}/>
-            <Route path="/myAccount" component={MyAccountPage}/>
-        </ValidateAuthenticated>
-    </Router>
+export const App = () => {
+    return (
+        <Router>
+            <AuthObserver />
+            <Route path="/" exact={true} component={SplashPage}/>
+            <ValidateAuthenticated>
+                <Fetches />
+                <Route path="/:page" component={Header} />
+                <Route path="/dashboard" component={DashboardPage}/>
+                <Route path="/plan" component={PlanPage}/>
+                <Route path="/journal" component={JournalPage}/>
+                <Route path="/myAccount" component={MyAccountPage}/>
+            </ValidateAuthenticated>
+        </Router>
+    )
+}
 
 export default hot(module)(App);
