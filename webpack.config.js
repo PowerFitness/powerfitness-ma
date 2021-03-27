@@ -29,12 +29,16 @@ module.exports = {
         port: 3000,
         publicPath: 'http://localhost:3000/',
         hotOnly: true,
-        historyApiFallback: true
+        historyApiFallback: true,
+        proxy: {
+            '/api': 'http://localhost:3001',
+        },
     },
     plugins: [
         new CopyPlugin([
             { from: 'src/index.html' },
-            { from: 'src/Toolkit.css' }
+            { from: 'src/Toolkit.css' },
+            { from: 'src/static', to: 'static' },
         ]
         ),
         new webpack.HotModuleReplacementPlugin()
