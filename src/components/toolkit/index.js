@@ -7,3 +7,4 @@ export * from './NavLink';
 export * from './PrimaryButton';
 export * from './PrimaryHeader';
 export * from './SubHeader';
+export * from './DatePicker';
