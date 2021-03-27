@@ -1,3 +1,4 @@
+import { actionTypes } from '../components/fetches/useFetch';
 
 const initialState = {
     id: 1,
@@ -7,9 +8,10 @@ const initialState = {
     lastUpdatedDate: 'datetime',
 };
 
-
 export const planReducer = (state = initialState, action) => {
     switch (action.type) {
+    case actionTypes.fetchComplete('plan'):
+        return action.payload.data;
     case 'setPlanAction':
         return action.payload;
     default:
@@ -18,3 +20,4 @@ export const planReducer = (state = initialState, action) => {
 }
 
 export default planReducer;
+

@@ -16,6 +16,13 @@ const StyledModal = styled.div`
     align-items: center;
 `;
 
+const ModalClose = styled.div`
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    font-size: 20px;
+`;
+
 const StyledOverlay = styled.div`
     position: fixed; 
     top: 0;
@@ -25,9 +32,10 @@ const StyledOverlay = styled.div`
     background-color: rgba(128,128,128,0.5); 
 `;
 
-export const Modal = ({ isOpen, children, ... rest }) => isOpen ?
+export const Modal = ({ isOpen, toggleOpen, children, ... rest }) => isOpen ?
     <StyledOverlay>
-        <StyledModal {...rest}>
+        <StyledModal onClick={() => toggleOpen(false)} {...rest}>
+            <ModalClose>x</ModalClose>
             {children}
         </StyledModal>
     </StyledOverlay> : null
