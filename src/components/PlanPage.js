@@ -82,8 +82,6 @@ export const PlanPage = ({
         setCalorieIntake(e.target.value);
     };
     const noedit = !(motivStat || exerciseDay || exerciseMin || water || calorie)
-    console.log (noedit)
-    console.log (isNewUser)
     return(
         <>
             <SubHeader>
