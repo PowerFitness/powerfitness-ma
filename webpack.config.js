@@ -37,6 +37,6 @@ module.exports = {
             { from: 'src/Toolkit.css' }
         ]
         ),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
     ]
 };
