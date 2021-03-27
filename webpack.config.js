@@ -41,6 +41,6 @@ module.exports = {
             { from: 'src/static', to: 'static' },
         ]
         ),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
     ]
 };
