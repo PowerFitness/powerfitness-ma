@@ -9,7 +9,8 @@ const enhancer = compose(
         : f => f
 );
 
-const initialState = {};
+const initialState = {
+};
 const store = createStore(rootReducer, initialState, enhancer);
 
 export default store;
