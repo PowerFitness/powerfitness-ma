@@ -47,11 +47,11 @@ export function ProgressCircleWrapper() {
     const svgWidth = 150;
     const arcWidth = 6;
     // eslint-disable-next-line no-unused-vars
-    const [progressPercentage, setProgressPercentage] = useState(50);
+    const [ progressPercentage, setProgressPercentage ] = useState(50);
     const exerciseColor = useColorIndication(progressPercentage, '#C879FF');
     const waterColor = useColorIndication(progressPercentage, '#00ABE7');
     const calorieColor = useColorIndication(progressPercentage, '#EF798A');
-    
+
     return (
         <Box padding="5rem 1rem 0 1rem" justifyContent="center" display="flex">
             <ProgressArc

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export const useColorIndication = (progressPercentage, color) => {
-    const [colorIndicator, setColorIndicator] = useState(color);
+    const [ colorIndicator, setColorIndicator ] = useState(color);
     useEffect(() => {
         progressPercentage > 0
             ? setColorIndicator(color)

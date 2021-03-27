@@ -81,7 +81,7 @@ text-align: left;
 
 export const DashboardPage = () => {
     const today = dayjs().format('dddd, MMMM D, YYYY');
-    const [cDate, setcDate] = useState(today);
+    const [ cDate, setcDate ] = useState(today);
 
     const prevDate = () => {
         const pDate = dayjs(cDate).subtract('1', 'day').format('dddd, MMMM D, YYYY');
