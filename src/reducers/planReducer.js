@@ -1,12 +1,23 @@
 import { actionTypes } from '../components/fetches/useFetch';
 
-export const userReducer = (state = {}, action) => {
+const initialState = {
+    id: 1,
+    userUniqueId: '1234',
+    motivationStatement: 'This is my motivation statement',
+    createdDate: 'datetime',
+    lastUpdatedDate: 'datetime',
+};
+
+export const planReducer = (state = initialState, action) => {
     switch (action.type) {
     case actionTypes.fetchComplete('plan'):
         return action.payload.data;
+    case 'setPlanAction':
+        return action.payload;
     default:
-        return state;
+        return state
     }
 }
 
-export default userReducer;
+export default planReducer;
+

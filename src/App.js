@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
-import { PlanPage } from './components/PlanPage';
-import { JournalPage } from './components/JournalPage';
-import { SplashPage } from './components/SplashPage';
-import { DashboardPage } from './components/DashboardPage';
-import { MyAccountPage } from './components/MyAccountPage';
+import PlanPage from './components/PlanPage';
+import JournalPage from './components/JournalPage';
+import SplashPage from './components/SplashPage';
+import DashboardPage from './components/DashboardPage';
+import MyAccountPage from './components/MyAccountPage';
 import Header from './components/Header';
 import AuthObserver from './components/firebaseAuthentication/AuthObserver';
 import ValidateAuthenticated from './components/firebaseAuthentication/ValidateAuthenticated';
