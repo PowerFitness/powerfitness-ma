@@ -1,13 +1,7 @@
 import { actionTypes } from '../components/fetches/useFetch';
 import { setPlanAction } from '../actions/setPlanAction';
 
-const initialState = {
-    id: 1,
-    userUniqueId: '1234',
-    motivationStatement: 'This is my motivation statement',
-    createdDate: 'datetime',
-    lastUpdatedDate: 'datetime',
-};
+const initialState = {};
 
 export const planReducer = (state = initialState, action) => {
     switch (action.type) {

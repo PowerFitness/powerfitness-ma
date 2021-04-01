@@ -7,9 +7,11 @@ import { usePlanFetch } from '../fetches/usePlanFetch';
 export const ValidateRoutes = ({ children }) => {
     const isFetched = (usePlanFetch());
     const isNewUser = useSelector(planSelectors.isNewUser);
-    console.log(isNewUser)
+
     if(!isFetched) return <h1>Loading</h1>
-    return (isNewUser) ? <Redirect to="/welcome" /> : <>{children}</>
+    else if(isNewUser && !(location.pathname === '/welcome' || location.pathname === '/plan')) {
+        return <Redirect to="/welcome" />;
+    } else return <>{children}</>
 }
 
 export default ValidateRoutes;

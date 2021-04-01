@@ -43,11 +43,7 @@ const StyledCard = styled(Card)`
 
 export const SplashPage = () => {
     const dispatch = useDispatch();
-    const isPendingAuthStateChange = useSelector(userSelectors.isPendingAuthStateChange);
     const isAuthenticated = useSelector(userSelectors.isAuthenticated);
-    if (isPendingAuthStateChange) {
-        return null;
-    }
     if(isAuthenticated) return <Redirect to="/dashboard" />
     return <>
         <SignInHeader/>

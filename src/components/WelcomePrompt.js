@@ -29,7 +29,6 @@ margin: 0 0 150px 0;
 `
 export const WelcomePrompt = () => {
     const userName = useSelector(userSelectors.userName);
-    console.log('Got Here')
     return (
         <>
             <Welcome>
