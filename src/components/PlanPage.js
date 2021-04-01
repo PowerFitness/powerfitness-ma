@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Text, HeaderText, SubHeader, PrimaryButton, Input } from './toolkit';
 import PropTypes from 'prop-types';
 import * as planSelectors from '../selectors/planSelectors';
+import * as setPlanAction from '../actions/setPlanAction';
 
 const Motivation = styled.div`
 padding: 30px 0 0 75px;
@@ -59,6 +60,7 @@ export const PlanPage = ({
     const history = useHistory();
 
     const handleSavePlan = () =>{
+        savePlan(motivStat);
         history.push('/plan');
     };
 
@@ -130,6 +132,12 @@ PlanPage.propTypes = {
     //savePlan: PropTypes.func
 };
 
+const mapDispatchToProps = (dispatch) => ({
+    savePlan: (motivStat) => dispatch(
+        setPlanAction.savePlan(motivStat)
+    )
+});
+
 const mapStateToProps = (state) => {
     return {
         mStatement: planSelectors.getMotivation(state),
@@ -141,4 +149,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(PlanPage);
+export default connect(mapStateToProps, mapDispatchToProps)(PlanPage);

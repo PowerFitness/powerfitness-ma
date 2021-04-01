@@ -10,8 +10,8 @@ export const actionTypes = {
 }
 
 export const useFetch = (url, name) => {
-    const isComplete = useSelector(isFetchComplete(name));
-    const isStarted = useSelector(isFetchStarted(name));
+    const isComplete = useSelector(isFetchComplete(url));
+    const isStarted = useSelector(isFetchStarted(url));
     const dispatch = useDispatch();
     useEffect(() => {
         (async () => {
