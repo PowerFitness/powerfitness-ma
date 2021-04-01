@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import * as planSelectors from '../../selectors/planSelectors';
 import { usePlanFetch } from '../fetches/usePlanFetch';
 
@@ -14,4 +14,4 @@ export const ValidateRoutes = ({ children }) => {
     } else return <>{children}</>
 }
 
-export default ValidateRoutes;
+export default withRouter(ValidateRoutes);

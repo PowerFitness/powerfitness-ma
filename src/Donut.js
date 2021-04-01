@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import * as d3 from 'd3';
-import { Box } from '@material-ui/core';
 import { useColorIndication } from './useColorIndication';
 
 const ProgressArc = (props) => {
@@ -42,6 +42,12 @@ const ProgressArc = (props) => {
         </div>
     );
 }
+const FlexDiv = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+`;
 
 export function ProgressCircleWrapper() {
     const svgWidth = 150;
@@ -53,7 +59,7 @@ export function ProgressCircleWrapper() {
     const calorieColor = useColorIndication(progressPercentage, '#EF798A');
 
     return (
-        <Box padding="5rem 1rem 0 1rem" justifyContent="center" display="flex">
+        <FlexDiv padding="5rem 1rem 0 1rem" justifyContent="center" display="flex">
             <ProgressArc
                 svgWidth={svgWidth}
                 arcWidth={arcWidth}
@@ -64,31 +70,27 @@ export function ProgressCircleWrapper() {
                 result="1500"
                 unit="cal"
             />
-            <Box width="50%" float="right" margin="0 0 0 20px">
-                <ProgressArc
-                    svgWidth={svgWidth}
-                    arcWidth={arcWidth}
-                    progressPercentage={progressPercentage}
-                    colorIndicator={exerciseColor}
-                    name="Exercise"
-                    goal="45"
-                    result="30"
-                    unit="min"
-                />
-            </Box>
-            <Box width="50%" float="right" margin="0 0 0 20px">
-                <ProgressArc
-                    svgWidth={svgWidth}
-                    arcWidth={arcWidth}
-                    progressPercentage={progressPercentage}
-                    colorIndicator={waterColor}
-                    name="Water"
-                    goal="80"
-                    result="70"
-                    unit="oz"
-                />
-            </Box>
-        </Box>
+            <ProgressArc
+                svgWidth={svgWidth}
+                arcWidth={arcWidth}
+                progressPercentage={progressPercentage}
+                colorIndicator={exerciseColor}
+                name="Exercise"
+                goal="45"
+                result="30"
+                unit="min"
+            />
+            <ProgressArc
+                svgWidth={svgWidth}
+                arcWidth={arcWidth}
+                progressPercentage={progressPercentage}
+                colorIndicator={waterColor}
+                name="Water"
+                goal="80"
+                result="70"
+                unit="oz"
+            />
+        </FlexDiv>
     );
 }
 
