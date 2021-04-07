@@ -26,8 +26,8 @@ export const App = () => {
                     <Route path="/dashboard" component={DashboardPage}/>
                     <Route path="/journal" component={JournalPage}/>
                     <Route path="/myAccount" component={MyAccountPage}/>
+                    <Route path="/plan" component={PlanPage}/>
                 </ValidateRoutes>
-                <Route path="/plan" component={PlanPage}/>
             </ValidateAuthenticated>
         </Router>
     )

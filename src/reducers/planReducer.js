@@ -7,8 +7,10 @@ export const planReducer = (state = initialState, action) => {
     switch (action.type) {
     case actionTypes.fetchComplete('plan'):
         return action.payload.data;
-    case setPlanAction.SAVE_PLAN:
-        return action.payload.data;
+    case setPlanAction.SAVE_PLAN: {
+        const { id } = action.payload
+        return { ...state, id }
+    }
     default:
         return state
     }
