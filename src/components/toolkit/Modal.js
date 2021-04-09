@@ -34,8 +34,8 @@ const StyledOverlay = styled.div`
 
 export const Modal = ({ isOpen, toggleOpen, children, ... rest }) => isOpen ?
     <StyledOverlay>
-        <StyledModal onClick={() => toggleOpen(false)} {...rest}>
-            <ModalClose>x</ModalClose>
+        <StyledModal {...rest}>
+            <ModalClose onClick={toggleOpen}>x</ModalClose>
             {children}
         </StyledModal>
     </StyledOverlay> : null
