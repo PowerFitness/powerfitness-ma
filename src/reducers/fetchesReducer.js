@@ -10,6 +10,10 @@ export const userReducer = (state = {}, action) => {
     if (action.type.includes(actionTypes.fetchError(''))) {
         return { ...state, [action.payload.url]: 'error' };
     }
+    if (action.type.includes(actionTypes.refetch(''))) {
+        return { ...state, [action.payload.url]: 'refetch' };
+    }
+
     return state;
 }
 

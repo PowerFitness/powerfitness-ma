@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import { Text, HeaderText, SubHeader, PrimaryButton, Input } from './toolkit';
 import PropTypes from 'prop-types';
 import * as planSelectors from '../selectors/planSelectors';
+import * as goalSelectors from '../selectors/goalSelectors';
+import * as setPlanAction from '../actions/setPlanAction';
 
 const Motivation = styled.div`
 padding: 30px 0 0 75px;
@@ -49,29 +51,30 @@ height: 47px;
 width: 80px;
 `
 export const PlanPage = ({
-    mStatement, exDay, exMin, waterIn, calorieIn, isNewUser
+    mStatement, dailyExerciseFetched, weeklyExerciseFetched, waterIn, calorieIn, isNewUser, savePlan
 }) =>{
     const [ motivStat, setMotivStatement ]= useState(mStatement);
-    const [ exerciseDay, setExerciseDays ]= useState(exDay);
-    const [ exerciseMin, setExerciseMins ]= useState(exMin);
+    const [ weeklyExercise, setWeeklyExercise ]= useState(weeklyExerciseFetched);
+    const [ dailyExercise, setDailyExercise ]= useState(dailyExerciseFetched);
     const [ water, setWaterIntake ]= useState(waterIn);
     const [ calorie, setCalorieIntake ]= useState(calorieIn);
     const history = useHistory();
 
-    const handleSavePlan = () =>{
-        history.push('/plan');
+    const handleSavePlan = async () => {
+        await savePlan(motivStat, weeklyExercise, dailyExercise, water, calorie);
+        history.push('/dashboard');
     };
 
     const handleMotivStatement = (e) =>{
         setMotivStatement(e.target.value);
     };
 
-    const handleExerciseDay = (e) =>{
-        setExerciseDays(e.target.value);
+    const handleDailyExercise = (e) =>{
+        setDailyExercise(e.target.value);
     };
 
-    const handleExerciseMin = (e) =>{
-        setExerciseMins(e.target.value);
+    const handleWeeklyExercise = (e) =>{
+        setWeeklyExercise(e.target.value);
     };
 
     const handleWaterIntake = (e) =>{
@@ -81,7 +84,7 @@ export const PlanPage = ({
     const handleCalorieIntake = (e) =>{
         setCalorieIntake(e.target.value);
     };
-    const noedit = !(motivStat || exerciseDay || exerciseMin || water || calorie)
+    const noedit = !(motivStat || dailyExercise || weeklyExercise || water || calorie)
     return(
         <>
             <SubHeader>
@@ -97,12 +100,12 @@ export const PlanPage = ({
                 <HeaderText>Exercise</HeaderText>
                 <WeeklyExercise>
                     <Text margin="13px 0 11px 0">What is your weekly exercise goal?</Text>
-                    <InputBox value={exerciseDay} onChange={handleExerciseDay}/>
+                    <InputBox value={weeklyExercise} onChange={handleWeeklyExercise}/>
                     <TextSide>days per week</TextSide>
                 </WeeklyExercise>
                 <ExerciseMinutes>
                     <Text margin="0 0 11px 0">How many minutes of exercise per day?</Text>
-                    <InputBox value={exerciseMin} onChange={handleExerciseMin}/>
+                    <InputBox value={dailyExercise} onChange={handleDailyExercise}/>
                     <TextSide>minutes</TextSide>
                 </ExerciseMinutes>
             </Exercise>
@@ -127,18 +130,24 @@ export const PlanPage = ({
 PlanPage.propTypes = {
     planId: PropTypes.string,
     mStatement: PropTypes.string,
-    //savePlan: PropTypes.func
+    savePlan: PropTypes.func
 };
+
+const mapDispatchToProps = (dispatch) => ({
+    savePlan: (motivStat, weeklyExercise, dailyExercise, water, calorie) => dispatch(
+        setPlanAction.savePlan(motivStat, weeklyExercise, dailyExercise, water, calorie)
+    )
+});
 
 const mapStateToProps = (state) => {
     return {
         mStatement: planSelectors.getMotivation(state),
-        exDay: planSelectors.goalWeeklyExercise(state),
-        exMin: planSelectors.goalDailyExercise(state),
-        waterIn: planSelectors.goalDailyWater(state),
-        calorieIn: planSelectors.goalDailyCalories(state),
+        dailyExerciseFetched: goalSelectors.goalValue('dailyExercise')(state),
+        weeklyExerciseFetched: goalSelectors.goalValue('weeklyExercise')(state),
+        waterIn: goalSelectors.goalValue('dailyWater')(state),
+        calorieIn: goalSelectors.goalValue('dailyCalories')(state),
         isNewUser: planSelectors.isNewUser(state)
     };
 };
 
-export default connect(mapStateToProps)(PlanPage);
+export default connect(mapStateToProps, mapDispatchToProps)(PlanPage);

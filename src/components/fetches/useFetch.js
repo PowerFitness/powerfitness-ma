@@ -6,12 +6,13 @@ import { isFetchComplete, isFetchStarted } from '../../selectors/fetchSelectors'
 export const actionTypes = {
     fetchStarted: (name) => `fetchStarted/${name}`,
     fetchComplete: (name) => `fetchComplete/${name}`,
-    fetchError: (name) => `fetchError/${name}`
+    fetchError: (name) => `fetchError/${name}`,
+    refetch: (name) => `refetch/${name}`
 }
 
 export const useFetch = (url, name) => {
-    const isComplete = useSelector(isFetchComplete(name));
-    const isStarted = useSelector(isFetchStarted(name));
+    const isComplete = useSelector(isFetchComplete(url));
+    const isStarted = useSelector(isFetchStarted(url));
     const dispatch = useDispatch();
     useEffect(() => {
         (async () => {
@@ -25,7 +26,7 @@ export const useFetch = (url, name) => {
                 dispatch({ type: actionTypes.fetchError(name), payload: { url, name, error: e.message } });
             }
         })();
-    }, [ url, name ]);
+    }, [ url, name, isComplete, isStarted ]);
 
     return isComplete;
 }

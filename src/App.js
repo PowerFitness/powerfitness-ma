@@ -4,12 +4,14 @@ import { hot } from 'react-hot-loader';
 import PlanPage from './components/PlanPage';
 import JournalPage from './components/JournalPage';
 import SplashPage from './components/SplashPage';
+import WelcomePrompt from './components/WelcomePrompt';
 import DashboardPage from './components/DashboardPage';
 import MyAccountPage from './components/MyAccountPage';
 import Header from './components/Header';
 import AuthObserver from './components/firebaseAuthentication/AuthObserver';
 import ValidateAuthenticated from './components/firebaseAuthentication/ValidateAuthenticated';
 import Fetches from './components/fetches/Fetches';
+import ValidateRoutes from './components/firebaseAuthentication/ValidateRoutes';
 
 export const App = () => {
     return (
@@ -19,10 +21,13 @@ export const App = () => {
             <ValidateAuthenticated>
                 <Fetches />
                 <Route path="/:page" component={Header} />
-                <Route path="/dashboard" component={DashboardPage}/>
-                <Route path="/plan" component={PlanPage}/>
-                <Route path="/journal" component={JournalPage}/>
-                <Route path="/myAccount" component={MyAccountPage}/>
+                <Route path="/welcome" component={WelcomePrompt}/>
+                <ValidateRoutes>
+                    <Route path="/dashboard" component={DashboardPage}/>
+                    <Route path="/journal" component={JournalPage}/>
+                    <Route path="/myAccount" component={MyAccountPage}/>
+                    <Route path="/plan" component={PlanPage}/>
+                </ValidateRoutes>
             </ValidateAuthenticated>
         </Router>
     )
