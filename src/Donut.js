@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import * as d3 from 'd3';
 import { useColorIndication } from './useColorIndication';
-import { userSelectors } from 'react-redux';
 import * as goalSelectors from './selectors/goalSelectors';
 import { useSelector } from 'react-redux';
 import { GOAL_NAMES } from './constants/goalNames';
