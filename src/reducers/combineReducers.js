@@ -4,6 +4,7 @@ import ui from './uiReducer';
 import fetches from './fetchesReducer';
 import planFetched from './planReducer';
 import goalsFetched from './goalReducer';
+import resultsFetched from './resultsReducer';
 
-export default combineReducers({ fetches, user, ui, planFetched, goalsFetched });
+export default combineReducers({ fetches, user, ui, planFetched, goalsFetched, resultsFetched,  });
 
