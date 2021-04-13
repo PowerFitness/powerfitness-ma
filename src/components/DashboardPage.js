@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { HeaderText, SubHeader, PrimaryButton, DatePicker } from './toolkit';
 import { ProgressCircleWrapper } from '../Donut';
+import * as planSelectors from '../selectors/planSelectors';
+import { useSelector } from 'react-redux';
 
 const DashButton = styled(PrimaryButton)`
 box-sizing: border-box;
@@ -46,6 +48,7 @@ text-align: left;
 `
 
 export const DashboardPage = () => {
+    const motiv = useSelector(planSelectors.getMotivation);
     return (
         <>
             <SubHeader>
@@ -56,7 +59,7 @@ export const DashboardPage = () => {
                 <ShadowLCard>
                     <Motivation>
                         <HeaderText>My Motivation</HeaderText>
-                        <StyledText>Hi There</StyledText>
+                        <StyledText>{motiv}</StyledText>
                     </Motivation>
                 </ShadowLCard>
                 <ShadowRCard>

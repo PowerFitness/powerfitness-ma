@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import * as d3 from 'd3';
 import { useColorIndication } from './useColorIndication';
+import { userSelectors } from 'react-redux';
+import * as goalSelectors from './selectors/goalSelectors';
+import { useSelector } from 'react-redux';
+import { GOAL_NAMES } from './constants/goalNames';
 
 const ProgressArc = (props) => {
     const { svgWidth, arcWidth, progressPercentage, colorIndicator, name, unit, goal, result } = props;
@@ -57,6 +61,10 @@ export function ProgressCircleWrapper() {
     const exerciseColor = useColorIndication(progressPercentage, '#C879FF');
     const waterColor = useColorIndication(progressPercentage, '#00ABE7');
     const calorieColor = useColorIndication(progressPercentage, '#EF798A');
+    const goalCalorie = useSelector(goalSelectors.goalValue(GOAL_NAMES.dailyCalories));
+    const goalWater = useSelector(goalSelectors.goalValue(GOAL_NAMES.dailyWater));
+    const goalDailyExercise = useSelector(goalSelectors.goalValue(GOAL_NAMES.dailyExercise));
+
 
     return (
         <FlexDiv padding="5rem 1rem 0 1rem" justifyContent="center" display="flex">
@@ -66,7 +74,7 @@ export function ProgressCircleWrapper() {
                 progressPercentage={progressPercentage}
                 colorIndicator={calorieColor}
                 name="Calories"
-                goal="2000"
+                goal={goalCalorie}
                 result="1500"
                 unit="cal"
             />
@@ -76,7 +84,7 @@ export function ProgressCircleWrapper() {
                 progressPercentage={progressPercentage}
                 colorIndicator={exerciseColor}
                 name="Exercise"
-                goal="45"
+                goal={goalDailyExercise}
                 result="30"
                 unit="min"
             />
@@ -86,7 +94,7 @@ export function ProgressCircleWrapper() {
                 progressPercentage={progressPercentage}
                 colorIndicator={waterColor}
                 name="Water"
-                goal="80"
+                goal={goalWater}
                 result="70"
                 unit="oz"
             />
