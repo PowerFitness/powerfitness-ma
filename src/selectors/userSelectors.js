@@ -2,4 +2,5 @@ export const isAuthenticated = state => state.user && Object.keys(state.user).le
 export const isPendingAuthStateChange = state => state.user && Object.keys(state.user).length === 0;
 export const userUniqueId = state => state.user.uid;
 export const userName = state => state.user.displayName;
+export const date = state => '2021/12/31';
 
