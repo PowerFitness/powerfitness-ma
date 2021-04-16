@@ -7,7 +7,7 @@ export const resultsReducer = (state = initialState, action) => {
     switch (action.type) {
     case actionTypes.fetchComplete('results'): {
         const results = action.payload.data;
-        return resultsFormatter(results)
+        return { ...state, ...resultsFormatter(results) }
     }
     default:
         return state
