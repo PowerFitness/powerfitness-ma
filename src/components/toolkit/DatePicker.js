@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
+import * as dateSelector from '../../selectors/dateSelector';
+import * as dateActions from  '../../actions/setDateAction';
+import { useSelector, useDispatch } from 'react-redux';
 
 dayjs.extend(advancedFormat)
 library.add(fas)
@@ -37,16 +40,17 @@ const Date = styled.div`
 `
 
 export const DatePicker = () => {
-    const today = dayjs().format('dddd, MMMM D, YYYY');
-    const [ cDate, setcDate ] = useState(today);
+    const selectedDate = useSelector(dateSelector.selectedDate);
+    const cDate = dayjs(selectedDate).format('dddd, MMMM D, YYYY')
+    const dispatch = useDispatch()
 
     const prevDate = () => {
-        const pDate = dayjs(cDate).subtract('1', 'day').format('dddd, MMMM D, YYYY');
-        setcDate(pDate);
+        const pDate = dayjs(cDate).subtract('1', 'day').format('YYYY-MM-DD');
+        dispatch(dateActions.setDateAction(pDate))
     };
     const nextDate = () => {
-        const nDate = dayjs(cDate).add('1', 'day').format('dddd, MMMM D, YYYY');
-        setcDate(nDate);
+        const nDate = dayjs(cDate).add('1', 'day').format('YYYY-MM-DD');
+        dispatch(dateActions.setDateAction(nDate))
     };
     return (
         <DatePickerContainer>
