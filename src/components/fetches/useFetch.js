@@ -21,7 +21,6 @@ export const useFetch = (url, name) => {
                 if (url && name && !isComplete && !isStarted && !isError) {
                     dispatch({ type: actionTypes.fetchStarted(name), payload: { url, name } });
                     const fetchResponse = await axios.get(url);
-                    console.log(fetchResponse);
                     dispatch({ type: actionTypes.fetchComplete(name), payload: { url, name, data: fetchResponse.data || null } })
                 }
             } catch (e) {

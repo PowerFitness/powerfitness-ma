@@ -4,6 +4,7 @@ import { HeaderText, SubHeader, PrimaryButton, DatePicker } from './toolkit';
 import { ProgressCircleWrapper } from '../Donut';
 import * as planSelectors from '../selectors/planSelectors';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const DashButton = styled(PrimaryButton)`
 box-sizing: border-box;
@@ -49,10 +50,14 @@ text-align: left;
 
 export const DashboardPage = () => {
     const motiv = useSelector(planSelectors.getMotivation);
+    const history = useHistory();
+    const navigateTo = () =>{
+        history.push('/journal');
+    }
     return (
         <>
             <SubHeader>
-                <DashButton>Add Journal Entry</DashButton>
+                <DashButton onClick={navigateTo}>Add Journal Entry</DashButton>
             </SubHeader>
             <DatePicker/>
             <Shadow>

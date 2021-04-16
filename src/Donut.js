@@ -5,6 +5,7 @@ import { useColorIndication } from './useColorIndication';
 import * as goalSelectors from './selectors/goalSelectors';
 import { useSelector } from 'react-redux';
 import { GOAL_NAMES } from './constants/goalNames';
+import * as resultSelectors from './selectors/resultSelectors';
 
 const ProgressArc = (props) => {
     const { svgWidth, arcWidth, progressPercentage, colorIndicator, name, unit, goal, result } = props;
@@ -63,38 +64,39 @@ export function ProgressCircleWrapper() {
     const goalCalorie = useSelector(goalSelectors.goalValue(GOAL_NAMES.dailyCalories));
     const goalWater = useSelector(goalSelectors.goalValue(GOAL_NAMES.dailyWater));
     const goalDailyExercise = useSelector(goalSelectors.goalValue(GOAL_NAMES.dailyExercise));
-
-
+    const resultNutrition = useSelector(resultSelectors.nutritionResultSum('2021-04-12'));
+    const resultWater = useSelector(resultSelectors.waterResultSum('2021-04-12'));
+    const resultExercise = useSelector(resultSelectors.exerciseResultSum('2021-04-12'));
     return (
         <FlexDiv padding="5rem 1rem 0 1rem" justifyContent="center" display="flex">
             <ProgressArc
                 svgWidth={svgWidth}
                 arcWidth={arcWidth}
-                progressPercentage={progressPercentage}
+                progressPercentage={(resultNutrition/goalCalorie)*100}
                 colorIndicator={calorieColor}
                 name="Calories"
                 goal={goalCalorie}
-                result="1500"
+                result={resultNutrition}
                 unit="cal"
             />
             <ProgressArc
                 svgWidth={svgWidth}
                 arcWidth={arcWidth}
-                progressPercentage={progressPercentage}
+                progressPercentage={(resultExercise/goalDailyExercise)*100}
                 colorIndicator={exerciseColor}
                 name="Exercise"
                 goal={goalDailyExercise}
-                result="30"
+                result={resultExercise}
                 unit="min"
             />
             <ProgressArc
                 svgWidth={svgWidth}
                 arcWidth={arcWidth}
-                progressPercentage={progressPercentage}
+                progressPercentage={(resultWater/goalWater)*100}
                 colorIndicator={waterColor}
                 name="Water"
                 goal={goalWater}
-                result="70"
+                result={resultWater}
                 unit="oz"
             />
         </FlexDiv>
