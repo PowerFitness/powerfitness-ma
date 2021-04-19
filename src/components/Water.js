@@ -1,5 +1,9 @@
+/* eslint-disable react/jsx-key */
 import React from 'react'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux';
+import * as resultSelectors from '../selectors/resultSelectors';
+import * as dateSelector from '../selectors/dateSelector';
 
 const WaterHeader = styled.div`
     font-family: Helvetica;
@@ -34,6 +38,7 @@ const WaterInput = styled.input`
     border: 1px solid #BDBDBD;
     margin-right: 75px;
     margin-left: 2px;
+    font-size: 18px;
 `
 
 const WaterUnit = styled.span`
@@ -59,6 +64,9 @@ const AddWater = styled.button `
 `
 
 export const Water = () => {
+    const selectDate = useSelector(dateSelector.selectedDate);
+    const waterQuantities = useSelector(resultSelectors.getWaterQuantities(selectDate));
+
     return (
         <React.Fragment>
             <WaterHeader>Water</WaterHeader>
@@ -66,9 +74,22 @@ export const Water = () => {
             <WaterSpan>Water Quantity</WaterSpan>
             <WaterUnitSpan>Unit</WaterUnitSpan>
             <hr/>
-            <WaterInput/>
-            <WaterUnit>ounces</WaterUnit>
-            <hr/>
+            {waterQuantities?.length > 0 ?
+                waterQuantities?.map((waterQuantity, index) => {
+                    return (
+                        <React.Fragment key={index}>
+                            <WaterInput value={waterQuantity.value}/>
+                            <WaterUnit>ounces</WaterUnit>
+                            <hr/>
+                        </React.Fragment>
+                    )
+                }):
+                <React.Fragment>
+                    <WaterInput/>
+                    <WaterUnit>ounces</WaterUnit>
+                    <hr/>
+                </React.Fragment>}
+
             <AddWater>+ Add another water item</AddWater>
         </React.Fragment>
     )
