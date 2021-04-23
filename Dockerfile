@@ -5,6 +5,6 @@ WORKDIR /usr/src/app
 COPY . .
 RUN npm install
 
-CMD ["npm run build"]
+CMD ["npm", "run", "build"]
 
 # docker run --rm  -v $(pwd)/dist:/usr/src/app/dist powerfitness-ma 
