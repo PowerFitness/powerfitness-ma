@@ -33,3 +33,28 @@ export const exerciseResultSum = (date) => (state) => {
     }
     return 0;
 }
+
+export const getExercises = (date) => (state) => {
+    const exercises = state.resultsFetched[date]?.exercise?.filter(item => item.type === 'exercise' );
+    return exercises;
+}
+
+export const getWaterQuantities = (date) => (state) => {
+    const waterQuantities = state.resultsFetched[date]?.water?.filter(item => item.type === 'water');
+    return waterQuantities;
+}
+
+export const getBreakfastItems = (date) => (state) => {
+    const breakfastItems = state.resultsFetched[date]?.nutrition?.filter(item => item.subtype === 'breakfast');
+    return breakfastItems;
+}
+
+export const getLunchItems = (date) => (state) => {
+    const lunchItems = state.resultsFetched[date]?.nutrition?.filter(item => item.subtype === 'lunch');
+    return lunchItems;
+}
+
+export const getDinnerItems = (date) => (state) => {
+    const dinnerItems = state.resultsFetched[date]?.nutrition?.filter(item => item.subtype === 'dinner');
+    return dinnerItems;
+}

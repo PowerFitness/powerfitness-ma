@@ -1,5 +1,10 @@
+/* eslint-disable react/jsx-key */
 import React from 'react'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux';
+import * as resultSelectors from '../selectors/resultSelectors';
+import * as dateSelector from '../selectors/dateSelector';
+
 
 const ExerciseContainer= styled.div`
     margin: 21px 0 43px 0;
@@ -16,18 +21,19 @@ const HorizontalLine = styled.hr`
     background-color: #C879FF;
 `
 
-const ExerciseSpan = styled.span`
-    padding-right: 374px;
+const ExerciseName = styled.span`
+    padding-right: 325px;
     font-family: Helvetica;
     font-size: 18px;
     font-weight: 700;
     margin: 19px 0 0 2px;
 `
 
-const ExerciseTimeSpan = styled.span`
+const ExerciseAmount = styled.span`
     font-family: Helvetica;
     font-size: 18px;
     font-weight: 700;
+    padding-right: 374px;
 `
 
 const ExerciseInput = styled.input`
@@ -37,6 +43,7 @@ const ExerciseInput = styled.input`
     border-radius: 8px;
     border: 1px solid #BDBDBD;
     margin: 0 75px 0 2px;
+    font-size: 18px;
 `
 
 const ExerciseTimeInput = styled.input`
@@ -45,6 +52,7 @@ const ExerciseTimeInput = styled.input`
     width: 376px;
     border-radius: 8px;
     border: 1px solid #BDBDBD;
+    font-size: 18px;
 `
 
 const AddExerciseButton = styled.button `
@@ -58,18 +66,50 @@ const AddExerciseButton = styled.button `
     margin: 4px 0 0 14px;
 `
 
+const ExerciseUnit = styled.span`
+    font-family: Helvetica;
+    font-size: 18px;
+    font-weight: 700;
+`
+
+const ExerciseMinutes = styled.span`
+    font-family: Helvetica;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-left: 67px;
+`
+
 export const Exercise = () => {
+    const selectDate = useSelector(dateSelector.selectedDate);
+    const exercises = useSelector(resultSelectors.getExercises(selectDate));
     return(
         <React.Fragment>
             <ExerciseContainer>
                 <ExerciseHeader>Exercise</ExerciseHeader>
                 <HorizontalLine/>
-                <ExerciseSpan>Exercise</ExerciseSpan>
-                <ExerciseTimeSpan>Exercise Time</ExerciseTimeSpan>
+                <ExerciseName>Exercise Name</ExerciseName>
+                <ExerciseAmount>Amount</ExerciseAmount>
+                <ExerciseUnit>Unit</ExerciseUnit>
                 <hr/>
-                <ExerciseInput/>
-                <ExerciseTimeInput/>
-                <hr/>
+                {exercises?.length > 0 ?
+                    exercises?.map((exercise, index) => {
+                        return (
+                            <React.Fragment key={index}>
+                                <ExerciseInput value={exercise.name}/>
+                                <ExerciseTimeInput value={exercise.value}/>
+                                <ExerciseMinutes>minutes</ExerciseMinutes>
+                                <hr/>
+                            </React.Fragment>
+                        )
+                    })
+                    :
+                    <React.Fragment><ExerciseInput/>
+                        <ExerciseTimeInput/>
+                        <ExerciseMinutes>minutes</ExerciseMinutes>
+                        <hr/>
+                    </React.Fragment>
+                }
                 <AddExerciseButton>+ Add another exercise</AddExerciseButton>
             </ExerciseContainer>
         </React.Fragment>
