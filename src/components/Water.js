@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-key */
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux';
+
 import * as resultSelectors from '../selectors/resultSelectors';
 import * as dateSelector from '../selectors/dateSelector';
 
@@ -66,6 +67,14 @@ const AddWater = styled.button `
 export const Water = () => {
     const selectDate = useSelector(dateSelector.selectedDate);
     const waterQuantities = useSelector(resultSelectors.getWaterQuantities(selectDate));
+    const [ listOfWaterQuantities, setListOfWaterQuantities ] = useState(waterQuantities);
+
+    const handleWaterQuantityChange = (index) => event => {
+        let newWaterQuantitiArray = [ ...listOfWaterQuantities ];
+        newWaterQuantitiArray[index].value = event.target.value;
+
+        setListOfWaterQuantities(newWaterQuantitiArray)
+    }
 
     return (
         <React.Fragment>
@@ -78,7 +87,7 @@ export const Water = () => {
                 waterQuantities?.map((waterQuantity, index) => {
                     return (
                         <React.Fragment key={index}>
-                            <WaterInput value={waterQuantity.value}/>
+                            <WaterInput value={waterQuantity.value} onChange={handleWaterQuantityChange(index)}/>
                             <WaterUnit>ounces</WaterUnit>
                             <hr/>
                         </React.Fragment>

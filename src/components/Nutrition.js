@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-key */
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
+
 import * as resultSelectors from '../selectors/resultSelectors';
 import * as dateSelector from '../selectors/dateSelector';
 
@@ -95,6 +96,52 @@ export const Nutrition = () => {
     const breakfastItems = useSelector(resultSelectors.getBreakfastItems(selectDate));
     const lunchItems = useSelector(resultSelectors.getLunchItems(selectDate));
     const dinnerItems = useSelector(resultSelectors.getDinnerItems(selectDate));
+    const [ listOfBreakfastItems, setListOfBreakfastItems ] = useState(breakfastItems)
+    const [ listOfLunchItems, setListOfLunchItems ] = useState(lunchItems)
+    const [ listOfDinnerItems, setListOfDinnerItems ] = useState(dinnerItems)
+
+    const handleBreakfastChange = (index) => event => {
+        let newBreakfastArray = [ ...listOfBreakfastItems ];
+        newBreakfastArray[index].name = event.target.value;
+
+        setListOfBreakfastItems(newBreakfastArray);
+    }
+
+    const handleBreakfastCalorieChange = (index) => event => {
+        let newBreakfastArray = [ ...listOfBreakfastItems ];
+        newBreakfastArray[index].value = event.target.value;
+
+        setListOfBreakfastItems(newBreakfastArray);
+    }
+
+    const handleLunchChange = (index) => event => {
+        let newLunchArray = [ ...listOfLunchItems ];
+        newLunchArray[index].name = event.target.value;
+
+        setListOfLunchItems(newLunchArray);
+    }
+
+    const handleLunchCalorieChange = (index) => event => {
+        let newLunchArray = [ ...listOfLunchItems ];
+        newLunchArray[index].value = event.target.value;
+
+        setListOfLunchItems(newLunchArray);
+    }
+
+    const handleDinnerChange = (index) => event => {
+        let newDinenrArray = [ ...listOfDinnerItems ];
+        newDinenrArray[index].name = event.target.value;
+
+        setListOfDinnerItems(newDinenrArray);
+    }
+
+    const handleDinnerCalorieChange = (index) => event => {
+        let newDinenrArray = [ ...listOfDinnerItems ];
+        newDinenrArray[index].value = event.target.value;
+
+        setListOfDinnerItems(newDinenrArray);
+    }
+
 
     return (
         <React.Fragment>
@@ -108,8 +155,8 @@ export const Nutrition = () => {
                 breakfastItems?.map((breakfastItem, index)=> {
                     return (
                         <React.Fragment key={index}>
-                            <NutritionInput value={breakfastItem.name}/>
-                            <CaloriesInput value={breakfastItem.value}/>
+                            <NutritionInput value={breakfastItem.name} onChange={handleBreakfastChange(index)}/>
+                            <CaloriesInput value={breakfastItem.value} onChange={handleBreakfastCalorieChange(index)}/>
                             <Unit>calories</Unit>
                             <hr/>
                         </React.Fragment>)
@@ -130,8 +177,8 @@ export const Nutrition = () => {
                 lunchItems?.map((lunchItem, index) => {
                     return (
                         <React.Fragment key={index}>
-                            <NutritionInput value={lunchItem.name}/>
-                            <CaloriesInput value={lunchItem.value}/>
+                            <NutritionInput value={lunchItem.name} onChange={handleLunchChange(index)}/>
+                            <CaloriesInput value={lunchItem.value} onChange={handleLunchCalorieChange(index)}/>
                             <Unit>calories</Unit>
                             <hr/>
                         </React.Fragment>
@@ -153,8 +200,8 @@ export const Nutrition = () => {
                 dinnerItems?.map((dinnerItem, index) => {
                     return (
                         <React.Fragment key={index}>
-                            <NutritionInput value={dinnerItem.name}/>
-                            <CaloriesInput value={dinnerItem.value}/>
+                            <NutritionInput value={dinnerItem.name} onChange={handleDinnerChange(index)}/>
+                            <CaloriesInput value={dinnerItem.value} onChange={handleDinnerCalorieChange(index)}/>
                             <Unit>calories</Unit>
                             <hr/>
                         </React.Fragment>

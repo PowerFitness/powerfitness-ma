@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux';
 import * as resultSelectors from '../selectors/resultSelectors';
@@ -83,6 +83,22 @@ const ExerciseMinutes = styled.span`
 export const Exercise = () => {
     const selectDate = useSelector(dateSelector.selectedDate);
     const exercises = useSelector(resultSelectors.getExercises(selectDate));
+    const [ listOfExercises, setListOfExercises ] = useState(exercises)
+
+    const handleOnExerciseNameChage = (index) => event => {
+        let newExercisesArray = [ ...listOfExercises ];
+        newExercisesArray[index].name = event.target.value;
+
+        setListOfExercises(newExercisesArray);
+    }
+
+    const handleOnExerciseTimeChange = (index) => event => {
+        let newExercisesArray = [ ...listOfExercises ];
+        newExercisesArray[index].value = event.target.value;
+
+        setListOfExercises(newExercisesArray);
+    }
+
     return(
         <React.Fragment>
             <ExerciseContainer>
@@ -96,8 +112,8 @@ export const Exercise = () => {
                     exercises?.map((exercise, index) => {
                         return (
                             <React.Fragment key={index}>
-                                <ExerciseInput value={exercise.name}/>
-                                <ExerciseTimeInput value={exercise.value}/>
+                                <ExerciseInput value={exercise.name} onChange={handleOnExerciseNameChage(index)}/>
+                                <ExerciseTimeInput value={exercise.value} onChange={handleOnExerciseTimeChange(index)}/>
                                 <ExerciseMinutes>minutes</ExerciseMinutes>
                                 <hr/>
                             </React.Fragment>
