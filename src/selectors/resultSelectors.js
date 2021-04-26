@@ -36,7 +36,7 @@ export const exerciseResultSum = (date) => (state) => {
 
 export const getExercises = (date) => (state) => {
     const exercises = state.resultsFetched[date]?.exercise?.filter(item => item.type === 'exercise' );
-    return exercises;
+    return exercises || [];
 }
 
 export const getWaterQuantities = (date) => (state) => {
@@ -57,4 +57,13 @@ export const getLunchItems = (date) => (state) => {
 export const getDinnerItems = (date) => (state) => {
     const dinnerItems = state.resultsFetched[date]?.nutrition?.filter(item => item.subtype === 'dinner');
     return dinnerItems;
+}
+
+export const resultsFetchComplete = (date, userUniqueId) => (state) => {
+    const constructedKey = '/api/powerfitness/results?userUniqueId=' + userUniqueId + '&date=' + date
+    if(state.fetches[constructedKey] === 'complete'){
+        return true;
+    }
+
+    return false;
 }
