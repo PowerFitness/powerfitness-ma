@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { firebase } from '../utils/firebase';
 
 const DropDownMenu = styled.div`
-z-index:1;
+z-index: 3;
 width: 150px;
 background-color: white;
 border: 1px solid lightgrey;
@@ -23,7 +23,7 @@ export const MyAccount = () => {
         firebase.auth().signOut();
     };
     return (
-        <DropDownMenu>
+        <DropDownMenu id="account-menu">
             <MenuItems onClick={clickLogOut}>
                 Sign Out
             </MenuItems>

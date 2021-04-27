@@ -16,5 +16,9 @@ export const PrimaryButton = styled.button`
     text-align: center;
     background-color: ${props => props.disabled? 'lightgrey' : '#0081AF'};
     pointer-events: ${props => props.disabled? 'none' : 'auto'};
+    
+    @media (max-width: 768px) {
+        width: 130px;
+    }
 `;
 

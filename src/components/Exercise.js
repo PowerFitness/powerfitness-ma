@@ -4,11 +4,7 @@ import styled from 'styled-components'
 import { useSelector } from 'react-redux';
 import * as resultSelectors from '../selectors/resultSelectors';
 import * as dateSelector from '../selectors/dateSelector';
-
-
-const ExerciseContainer= styled.div`
-    margin: 21px 0 43px 0;
-`
+import { ScrollableContainer, Table, TableHeaderRow, TableHeader, TableInput, TableUnit } from './toolkit/TableComponents';
 
 const ExerciseHeader = styled.div`
     font-family: Helvetica;
@@ -21,98 +17,56 @@ const HorizontalLine = styled.hr`
     background-color: #C879FF;
 `
 
-const ExerciseName = styled.span`
-    padding-right: 325px;
-    font-family: Helvetica;
-    font-size: 18px;
-    font-weight: 700;
-    margin: 19px 0 0 2px;
-`
-
-const ExerciseAmount = styled.span`
-    font-family: Helvetica;
-    font-size: 18px;
-    font-weight: 700;
-    padding-right: 374px;
-`
-
-const ExerciseInput = styled.input`
-    box-sizing: border-box;
-    height: 40px;
-    width: 376px;
-    border-radius: 8px;
-    border: 1px solid #BDBDBD;
-    margin: 0 75px 0 2px;
-    font-size: 18px;
-`
-
-const ExerciseTimeInput = styled.input`
-    box-sizing: border-box;
-    height: 40px;
-    width: 376px;
-    border-radius: 8px;
-    border: 1px solid #BDBDBD;
-    font-size: 18px;
-`
-
-const AddExerciseButton = styled.button `
+const AddButton = styled.button `
     color: #0081AF;
-    font-family: Helvetica;
-    font-size: 18px;
     font-weight: 300;
     line-height: 18px;
     background-color: white;
     border: none;
-    margin: 4px 0 0 14px;
-`
-
-const ExerciseUnit = styled.span`
-    font-family: Helvetica;
-    font-size: 18px;
-    font-weight: 700;
-`
-
-const ExerciseMinutes = styled.span`
-    font-family: Helvetica;
-    font-size: 18px;
-    font-weight: 300;
-    line-height: 18px;
-    margin-left: 67px;
+    margin: 4px 0 33px 14px;
+    cursor: pointer;
 `
 
 export const Exercise = () => {
     const selectDate = useSelector(dateSelector.selectedDate);
     const exercises = useSelector(resultSelectors.getExercises(selectDate));
     return(
-        <React.Fragment>
-            <ExerciseContainer>
-                <ExerciseHeader>Exercise</ExerciseHeader>
-                <HorizontalLine/>
-                <ExerciseName>Exercise Name</ExerciseName>
-                <ExerciseAmount>Amount</ExerciseAmount>
-                <ExerciseUnit>Unit</ExerciseUnit>
-                <hr/>
-                {exercises?.length > 0 ?
-                    exercises?.map((exercise, index) => {
-                        return (
-                            <React.Fragment key={index}>
-                                <ExerciseInput value={exercise.name}/>
-                                <ExerciseTimeInput value={exercise.value}/>
-                                <ExerciseMinutes>minutes</ExerciseMinutes>
+        <>
+            <ExerciseHeader>Exercise</ExerciseHeader>
+            <HorizontalLine/>
+            <ScrollableContainer>
+                <Table>
+                    <thead>
+                        <TableHeaderRow>
+                            <TableHeader>Exercise Name</TableHeader>
+                            <TableHeader>Amount</TableHeader>
+                            <TableHeader>Unit</TableHeader>
+                        </TableHeaderRow>
+                    </thead>
+                    <tbody>
+                        {exercises?.length > 0 ?
+                            exercises?.map((exercise, index)=> {
+                                return (
+                                    <tr key={index}>
+                                        <td><TableInput value={exercise.name}/></td>
+                                        <td><TableInput value={exercise.value}/></td>
+                                        <td><TableUnit>minutes</TableUnit></td>
+                                        <hr/>
+                                    </tr>)
+                            }) :
+                            <tr>
+                                <td><TableInput /></td>
+                                <td><TableInput/></td>
+                                <td><TableUnit>minutes</TableUnit></td>
                                 <hr/>
-                            </React.Fragment>
-                        )
-                    })
-                    :
-                    <React.Fragment><ExerciseInput/>
-                        <ExerciseTimeInput/>
-                        <ExerciseMinutes>minutes</ExerciseMinutes>
-                        <hr/>
-                    </React.Fragment>
-                }
-                <AddExerciseButton>+ Add another exercise</AddExerciseButton>
-            </ExerciseContainer>
-        </React.Fragment>
+                            </tr>}
+                    </tbody>
+                </Table>
+            </ScrollableContainer>
+            <AddButton>+ Add another exercise</AddButton>
+            <br/>
+        </>
+
     )
 }
 

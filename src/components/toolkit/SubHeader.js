@@ -12,4 +12,7 @@ export const SubHeader = styled.div`
     top: 54px;
     box-sizing: border-box;
     z-index: 1;
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
 `;

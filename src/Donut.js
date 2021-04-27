@@ -52,6 +52,10 @@ const FlexDiv = styled.div`
     justify-content: space-evenly;
     align-items: center;
     height: 100%;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
 `;
 
 export function ProgressCircleWrapper() {

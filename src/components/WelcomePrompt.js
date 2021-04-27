@@ -11,6 +11,12 @@ flex-direction: column;
 align-items: center;
 box-shadow: 0 2px 10px 0 #CACACA;
 margin: 80px 50px;
+
+@media (max-width: 768px) {
+    height: calc(100vh - 54px);
+    margin: 0;
+    box-shadow: none;
+}
 `
 const TDiv = styled.div`
 color: #0081AF;
@@ -40,9 +46,9 @@ export const WelcomePrompt = () => {
                 <Link to="/plan">
                     <PButton
                         height="80px"
-                        width="350px"
+                        width="300px"
                         borderRadius="50px"
-                        fontSize="30px"
+                        fontSize="26px"
                         background-color="#0081AF"
                     >
                         Start Fitness Planning

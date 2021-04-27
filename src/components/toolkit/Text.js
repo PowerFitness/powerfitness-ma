@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const Text = styled.div`
-    height: ${props => props.height || '18px'};
+export const Text = styled.p`
+    height: ${props => props.height};
     width: ${props => props.width || 'auto'};
     margin: ${props => props.margin || '0 0 0 0'};
     color: #000; 
