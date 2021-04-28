@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-key */
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
+
 import * as resultSelectors from '../selectors/resultSelectors';
 import * as dateSelector from '../selectors/dateSelector';
 import { ScrollableContainer, Table, TableHeaderRow, TableHeader, TableInput, TableUnit } from './toolkit/TableComponents';
@@ -33,6 +34,52 @@ export const Nutrition = () => {
     const breakfastItems = useSelector(resultSelectors.getBreakfastItems(selectDate)) || [];
     const lunchItems = useSelector(resultSelectors.getLunchItems(selectDate));
     const dinnerItems = useSelector(resultSelectors.getDinnerItems(selectDate));
+    const [ listOfBreakfastItems, setListOfBreakfastItems ] = useState(breakfastItems)
+    const [ listOfLunchItems, setListOfLunchItems ] = useState(lunchItems)
+    const [ listOfDinnerItems, setListOfDinnerItems ] = useState(dinnerItems)
+
+    const handleBreakfastChange = (index) => event => {
+        let newBreakfastArray = [ ...listOfBreakfastItems ];
+        newBreakfastArray[index].name = event.target.value;
+
+        setListOfBreakfastItems(newBreakfastArray);
+    }
+
+    const handleBreakfastCalorieChange = (index) => event => {
+        let newBreakfastArray = [ ...listOfBreakfastItems ];
+        newBreakfastArray[index].value = event.target.value;
+
+        setListOfBreakfastItems(newBreakfastArray);
+    }
+
+    const handleLunchChange = (index) => event => {
+        let newLunchArray = [ ...listOfLunchItems ];
+        newLunchArray[index].name = event.target.value;
+
+        setListOfLunchItems(newLunchArray);
+    }
+
+    const handleLunchCalorieChange = (index) => event => {
+        let newLunchArray = [ ...listOfLunchItems ];
+        newLunchArray[index].value = event.target.value;
+
+        setListOfLunchItems(newLunchArray);
+    }
+
+    const handleDinnerChange = (index) => event => {
+        let newDinenrArray = [ ...listOfDinnerItems ];
+        newDinenrArray[index].name = event.target.value;
+
+        setListOfDinnerItems(newDinenrArray);
+    }
+
+    const handleDinnerCalorieChange = (index) => event => {
+        let newDinenrArray = [ ...listOfDinnerItems ];
+        newDinenrArray[index].value = event.target.value;
+
+        setListOfDinnerItems(newDinenrArray);
+    }
+
 
     return (
         <>
@@ -52,8 +99,11 @@ export const Nutrition = () => {
                             breakfastItems?.map((breakfastItem, index)=> {
                                 return (
                                     <tr key={index}>
-                                        <td><TableInput value={breakfastItem.name}/></td>
-                                        <td><TableInput value={breakfastItem.value}/></td>
+                                        <td><TableInput value={breakfastItem.name} onChange={handleBreakfastChange(index)}/></td>
+                                        <td><TableInput
+                                            value={breakfastItem.value}
+                                            onChange={handleBreakfastCalorieChange(index)}/>
+                                        </td>
                                         <td><TableUnit>calories</TableUnit></td>
                                         <hr/>
                                     </tr>)
@@ -83,8 +133,8 @@ export const Nutrition = () => {
                             lunchItems?.map((lunchItem, index)=> {
                                 return (
                                     <tr key={index}>
-                                        <td><TableInput value={lunchItem.name}/></td>
-                                        <td><TableInput value={lunchItem.value}/></td>
+                                        <td><TableInput value={lunchItem.name} onChange={handleLunchChange(index)}/></td>
+                                        <td><TableInput value={lunchItem.value} onChange={handleLunchCalorieChange(index)}/></td>
                                         <td><TableUnit>calories</TableUnit></td>
                                         <hr/>
                                     </tr>)
@@ -113,8 +163,8 @@ export const Nutrition = () => {
                             dinnerItems?.map((dinnerItem, index)=> {
                                 return (
                                     <tr key={index}>
-                                        <td><TableInput value={dinnerItem.name}/></td>
-                                        <td><TableInput value={dinnerItem.value}/></td>
+                                        <td><TableInput value={dinnerItem.name} onChange={handleDinnerChange(index)}/></td>
+                                        <td><TableInput value={dinnerItem.value} onChange={handleDinnerCalorieChange(index)}/></td>
                                         <td><TableUnit>calories</TableUnit></td>
                                         <hr/>
                                     </tr>)

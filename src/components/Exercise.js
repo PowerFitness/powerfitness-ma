@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux';
 import * as resultSelectors from '../selectors/resultSelectors';
@@ -30,6 +30,22 @@ const AddButton = styled.button `
 export const Exercise = () => {
     const selectDate = useSelector(dateSelector.selectedDate);
     const exercises = useSelector(resultSelectors.getExercises(selectDate));
+    const [ listOfExercises, setListOfExercises ] = useState(exercises)
+
+    const handleOnExerciseNameChage = (index) => event => {
+        let newExercisesArray = [ ...listOfExercises ];
+        newExercisesArray[index].name = event.target.value;
+
+        setListOfExercises(newExercisesArray);
+    }
+
+    const handleOnExerciseTimeChange = (index) => event => {
+        let newExercisesArray = [ ...listOfExercises ];
+        newExercisesArray[index].value = event.target.value;
+
+        setListOfExercises(newExercisesArray);
+    }
+
     return(
         <>
             <ExerciseHeader>Exercise</ExerciseHeader>
@@ -48,8 +64,8 @@ export const Exercise = () => {
                             exercises?.map((exercise, index)=> {
                                 return (
                                     <tr key={index}>
-                                        <td><TableInput value={exercise.name}/></td>
-                                        <td><TableInput value={exercise.value}/></td>
+                                        <td><TableInput value={exercise.name} onChange={handleOnExerciseNameChage(index)}/></td>
+                                        <td><TableInput value={exercise.value} onChange={handleOnExerciseTimeChange(index)}/></td>
                                         <td><TableUnit>minutes</TableUnit></td>
                                         <hr/>
                                     </tr>)
@@ -58,7 +74,6 @@ export const Exercise = () => {
                                 <td><TableInput /></td>
                                 <td><TableInput/></td>
                                 <td><TableUnit>minutes</TableUnit></td>
-                                <hr/>
                             </tr>}
                     </tbody>
                 </Table>
