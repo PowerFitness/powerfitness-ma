@@ -5,7 +5,15 @@ import { useSelector } from 'react-redux'
 
 import * as resultSelectors from '../selectors/resultSelectors';
 import * as dateSelector from '../selectors/dateSelector';
-import { ScrollableContainer, Table, TableHeaderRow, TableHeader, TableInput, TableUnit } from './toolkit/TableComponents';
+import {
+    ScrollableContainer,
+    TableData,
+    Table,
+    TableHeaderRow,
+    TableHeader,
+    TableInput,
+    TableUnit
+} from './toolkit/TableComponents';
 
 const NutritionHeader = styled.th`
     font-family: Helvetica;
@@ -99,20 +107,20 @@ export const Nutrition = () => {
                             breakfastItems?.map((breakfastItem, index)=> {
                                 return (
                                     <tr key={index}>
-                                        <td><TableInput value={breakfastItem.name} onChange={handleBreakfastChange(index)}/></td>
-                                        <td><TableInput
+                                        <TableData>
+                                            <TableInput value={breakfastItem.name} onChange={handleBreakfastChange(index)}/>
+                                        </TableData>
+                                        <TableData><TableInput
                                             value={breakfastItem.value}
                                             onChange={handleBreakfastCalorieChange(index)}/>
-                                        </td>
-                                        <td><TableUnit>calories</TableUnit></td>
-                                        <hr/>
+                                        </TableData>
+                                        <TableData><TableUnit>calories</TableUnit></TableData>
                                     </tr>)
                             }) :
                             <tr>
-                                <td><TableInput /></td>
-                                <td><TableInput/></td>
-                                <td><TableUnit>calories</TableUnit></td>
-                                <hr/>
+                                <TableData><TableInput /></TableData>
+                                <TableData><TableInput/></TableData>
+                                <TableData><TableUnit>calories</TableUnit></TableData>
                             </tr>}
                     </tbody>
                 </Table>
@@ -133,17 +141,15 @@ export const Nutrition = () => {
                             lunchItems?.map((lunchItem, index)=> {
                                 return (
                                     <tr key={index}>
-                                        <td><TableInput value={lunchItem.name} onChange={handleLunchChange(index)}/></td>
-                                        <td><TableInput value={lunchItem.value} onChange={handleLunchCalorieChange(index)}/></td>
-                                        <td><TableUnit>calories</TableUnit></td>
-                                        <hr/>
+                                        <TableData><TableInput value={lunchItem.name} onChange={handleLunchChange(index)}/></TableData>
+                                        <TableData><TableInput value={lunchItem.value} onChange={handleLunchCalorieChange(index)}/></TableData>
+                                        <TableData><TableUnit>calories</TableUnit></TableData>
                                     </tr>)
                             }) :
                             <tr>
-                                <td><TableInput /></td>
-                                <td><TableInput/></td>
-                                <td><TableUnit>calories</TableUnit></td>
-                                <hr/>
+                                <TableData><TableInput /></TableData>
+                                <TableData><TableInput/></TableData>
+                                <TableData><TableUnit>calories</TableUnit></TableData>
                             </tr>}
                     </tbody>
                 </Table>
@@ -163,17 +169,15 @@ export const Nutrition = () => {
                             dinnerItems?.map((dinnerItem, index)=> {
                                 return (
                                     <tr key={index}>
-                                        <td><TableInput value={dinnerItem.name} onChange={handleDinnerChange(index)}/></td>
-                                        <td><TableInput value={dinnerItem.value} onChange={handleDinnerCalorieChange(index)}/></td>
-                                        <td><TableUnit>calories</TableUnit></td>
-                                        <hr/>
+                                        <TableData><TableInput value={dinnerItem.name} onChange={handleDinnerChange(index)}/></TableData>
+                                        <TableData><TableInput value={dinnerItem.value} onChange={handleDinnerCalorieChange(index)}/></TableData>
+                                        <TableData><TableUnit>calories</TableUnit></TableData>
                                     </tr>)
                             }) :
                             <tr>
-                                <td><TableInput /></td>
-                                <td><TableInput/></td>
-                                <td><TableUnit>calories</TableUnit></td>
-                                <hr/>
+                                <TableData><TableInput /></TableData>
+                                <TableData><TableInput/></TableData>
+                                <TableData><TableUnit>calories</TableUnit></TableData>
                             </tr>}
                     </tbody>
                 </Table>

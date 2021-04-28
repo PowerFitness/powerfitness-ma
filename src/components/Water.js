@@ -5,7 +5,15 @@ import { useSelector } from 'react-redux';
 
 import * as resultSelectors from '../selectors/resultSelectors';
 import * as dateSelector from '../selectors/dateSelector';
-import { ScrollableContainer, Table, TableHeaderRow, TableHeader, TableInput, TableUnit } from './toolkit/TableComponents';
+import {
+    ScrollableContainer,
+    Table,
+    TableHeaderRow,
+    TableHeader,
+    TableInput,
+    TableUnit,
+    TableData
+} from './toolkit/TableComponents';
 
 const WaterHeader = styled.div`
     font-family: Helvetica;
@@ -20,23 +28,12 @@ const HorizontalLine = styled.hr`
 
 const AddWater = styled.button `
     color: #0081AF;
-    font-family: Helvetica;
-    font-size: 18px;
     font-weight: 300;
     line-height: 18px;
     background-color: white;
     border: none;
     margin: 4px 0 50px 14px;
 `
-const ExtraWidth = styled.div`
-height: 30px;
-width: 370px;
-
-@media (max-width: 768px) {
-    width: 200px;
-}
-
-`;
 
 export const Water = () => {
     const selectDate = useSelector(dateSelector.selectedDate);
@@ -59,7 +56,6 @@ export const Water = () => {
                     <thead>
                         <TableHeaderRow>
                             <TableHeader>Water</TableHeader>
-                            <TableHeader></TableHeader>
                             <TableHeader>Unit</TableHeader>
                         </TableHeaderRow>
                     </thead>
@@ -68,20 +64,16 @@ export const Water = () => {
                             waterQuantities?.map((waterQuantity, index)=> {
                                 return (
                                     <tr key={index}>
-                                        <td><TableInput
+                                        <TableData><TableInput
                                             value={waterQuantity.value}
                                             onChange={handleWaterQuantityChange(index)}/>
-                                        </td>
-                                        <td><ExtraWidth/></td>
-                                        <td><TableUnit>ounces</TableUnit></td>
-                                        <hr/>
+                                        </TableData>
+                                        <TableData><TableUnit>ounces</TableUnit></TableData>
                                     </tr>)
                             }) :
                             <tr>
-                                <td><TableInput /></td>
-                                <td><TableInput/></td>
-                                <td><TableUnit>ounces</TableUnit></td>
-                                <hr/>
+                                <TableData><TableInput /></TableData>
+                                <TableData><TableUnit>ounces</TableUnit></TableData>
                             </tr>}
                     </tbody>
                 </Table>

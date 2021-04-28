@@ -4,7 +4,15 @@ import styled from 'styled-components'
 import { useSelector } from 'react-redux';
 import * as resultSelectors from '../selectors/resultSelectors';
 import * as dateSelector from '../selectors/dateSelector';
-import { ScrollableContainer, Table, TableHeaderRow, TableHeader, TableInput, TableUnit } from './toolkit/TableComponents';
+import {
+    ScrollableContainer,
+    TableData,
+    Table,
+    TableHeaderRow,
+    TableHeader,
+    TableInput,
+    TableUnit
+} from './toolkit/TableComponents';
 
 const ExerciseHeader = styled.div`
     font-family: Helvetica;
@@ -64,16 +72,22 @@ export const Exercise = () => {
                             exercises?.map((exercise, index)=> {
                                 return (
                                     <tr key={index}>
-                                        <td><TableInput value={exercise.name} onChange={handleOnExerciseNameChage(index)}/></td>
-                                        <td><TableInput value={exercise.value} onChange={handleOnExerciseTimeChange(index)}/></td>
-                                        <td><TableUnit>minutes</TableUnit></td>
+                                        <TableData>
+                                            <TableInput value={exercise.name} onChange={handleOnExerciseNameChage(index)}/>
+                                        </TableData>
+                                        <TableData>
+                                            <TableInput value={exercise.value} onChange={handleOnExerciseTimeChange(index)}/>
+                                        </TableData>
+                                        <TableData>
+                                            <TableUnit>minutes</TableUnit>
+                                        </TableData>
                                         <hr/>
                                     </tr>)
                             }) :
                             <tr>
-                                <td><TableInput /></td>
-                                <td><TableInput/></td>
-                                <td><TableUnit>minutes</TableUnit></td>
+                                <TableData><TableInput /></TableData>
+                                <TableData><TableInput/></TableData>
+                                <TableData><TableUnit>minutes</TableUnit></TableData>
                             </tr>}
                     </tbody>
                 </Table>

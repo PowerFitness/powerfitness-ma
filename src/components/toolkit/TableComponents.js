@@ -33,3 +33,7 @@ export const TableInput = styled.input`
 export const TableUnit = styled.span`
     height: 36px;   
 `;
+
+export const TableData = styled.td`
+    padding: 5px 0;    
+`
