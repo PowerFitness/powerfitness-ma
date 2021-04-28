@@ -9,10 +9,17 @@ import * as goalSelectors from '../selectors/goalSelectors';
 import * as setPlanAction from '../actions/setPlanAction';
 
 const Motivation = styled.div`
-padding: 30px 0 0 75px;
+padding: 30px 0 0 74px;
+@media (max-width: 768px) {
+    padding: 30px 0 0 30px;
+}
+
 `
 const Exercise = styled.div`
 padding: 30px 0 0 74px;
+@media (max-width: 768px) {
+    padding: 30px 0 0 30px;
+}
 `
 const WeeklyExercise = styled.div`
 padding: 13px 0 13px 0;
@@ -24,9 +31,15 @@ padding: 13px 0;
 `
 const WaterIntake = styled.div`
 padding: 30px 0 0 74px;
+@media (max-width: 768px) {
+    padding: 30px 0 0 30px;
+}
 `
 const Nutrition = styled.div`
 padding: 30px 0 130px 74px;
+@media (max-width: 768px) {
+    padding: 30px 0 0 30px;
+}
 `
 const TextSide = styled(Text)`
 display: inline;
@@ -44,6 +57,9 @@ font-size: 18px;
 font-weight: 300;
 line-height: 18px;
 text-align: left;
+@media (max-width: 768px) {
+    width: 270px;
+}
 `
 const InputBox = styled(Input)`
 display: inline; 

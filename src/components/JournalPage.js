@@ -8,25 +8,16 @@ import Water from './Water';
 import Nutrition from './Nutrition';
 import { DatePicker } from './toolkit/DatePicker'
 import styled from 'styled-components'
-import { SubHeader } from './toolkit';
+import { PrimaryButton, SubHeader } from './toolkit';
 import * as dateSelector from '../selectors/dateSelector';
 import * as userSelector from '../selectors/userSelectors';
 import * as resultSelector from '../selectors/resultSelectors'
 
 const Activities = styled.div`
-    margin: 0 55px 0 72px;
-`
-
-const Save = styled.button`
-    position: relative;
-    background-color: #0081AF;
-    border-radius: 8px;
-    font-family: Helvetica;
-    color: #FFF;
-    font-size: 22px;
-    text-align: center;
-    height: 37px;
-    width: 200px;
+    margin: 0 55px 0 55px;
+    @media (max-width: 768px) {
+        margin: 0 30px 0 30px;
+    }
 `
 
 const handleOnSave = () => {
@@ -43,7 +34,7 @@ export const JournalPage = () => {
             {isFetchComplete ?
                 <React.Fragment>
                     <SubHeader>
-                        <Save onClick={handleOnSave}>Save</Save>
+                        <PrimaryButton onClick={handleOnSave}>Complete</PrimaryButton>
                     </SubHeader>
                     <DatePicker/>
                     <Activities>

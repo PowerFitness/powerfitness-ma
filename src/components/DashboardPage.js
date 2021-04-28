@@ -8,31 +8,38 @@ import { useHistory } from 'react-router-dom';
 
 const DashButton = styled(PrimaryButton)`
 box-sizing: border-box;
-height: 5vh;
-width: 17vw;
+height: 37px;
+width: 200px;
 background-color: #FFF;
 border: 1px solid #0081AF;
 color: #0081AF;
+
 `
 const Shadow = styled.div`
-padding: 40px 75px 0 74px;
+padding: 40px 74px 0 74px;
 display: flex;
-justify-content: center;
+justify-content: space-around;
+flex-wrap: wrap;
+@media (max-width: 768px) {
+    padding: 40px 30px;
+}
 `
 const ShadowLCard = styled.div`
 border-radius: 8px;
 background: rgba(255,255,255,0.2);
 box-shadow: 0 2px 10px 0 #CACACA;
-height: 50vh;
-width: 60vw;
-margin: 0px 100px 0px 0px;
+min-height: 360px;
+width: 460px;
+margin-bottom: 20px;
 `
 const ShadowRCard = styled.div`
 background: rgba(255,255,255,0.2);
 border-radius: 8px;
 box-shadow: 0 2px 10px 0 #CACACA;
-height: 50vh;
-width: 60vw;
+min-height: 360px;
+width: 460px;
+margin-bottom: 20px;
+
 `
 const Motivation = styled.div`
 height: 35vh;

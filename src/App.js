@@ -6,7 +6,6 @@ import JournalPage from './components/JournalPage';
 import SplashPage from './components/SplashPage';
 import WelcomePrompt from './components/WelcomePrompt';
 import DashboardPage from './components/DashboardPage';
-import MyAccountPage from './components/MyAccountPage';
 import Header from './components/Header';
 import AuthObserver from './components/firebaseAuthentication/AuthObserver';
 import ValidateAuthenticated from './components/firebaseAuthentication/ValidateAuthenticated';
@@ -25,7 +24,6 @@ export const App = () => {
                 <ValidateRoutes>
                     <Route path="/dashboard" component={DashboardPage}/>
                     <Route path="/journal" component={JournalPage}/>
-                    <Route path="/myAccount" component={MyAccountPage}/>
                     <Route path="/plan" component={PlanPage}/>
                 </ValidateRoutes>
             </ValidateAuthenticated>
