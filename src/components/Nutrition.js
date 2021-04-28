@@ -141,9 +141,15 @@ export const Nutrition = () => {
                             lunchItems?.map((lunchItem, index)=> {
                                 return (
                                     <tr key={index}>
-                                        <TableData><TableInput value={lunchItem.name} onChange={handleLunchChange(index)}/></TableData>
-                                        <TableData><TableInput value={lunchItem.value} onChange={handleLunchCalorieChange(index)}/></TableData>
-                                        <TableData><TableUnit>calories</TableUnit></TableData>
+                                        <TableData>
+                                            <TableInput value={lunchItem.name} onChange={handleLunchChange(index)}/>
+                                        </TableData>
+                                        <TableData>
+                                            <TableInput value={lunchItem.value} onChange={handleLunchCalorieChange(index)}/>
+                                        </TableData>
+                                        <TableData>
+                                            <TableUnit>calories</TableUnit>
+                                        </TableData>
                                     </tr>)
                             }) :
                             <tr>
@@ -169,9 +175,15 @@ export const Nutrition = () => {
                             dinnerItems?.map((dinnerItem, index)=> {
                                 return (
                                     <tr key={index}>
-                                        <TableData><TableInput value={dinnerItem.name} onChange={handleDinnerChange(index)}/></TableData>
-                                        <TableData><TableInput value={dinnerItem.value} onChange={handleDinnerCalorieChange(index)}/></TableData>
-                                        <TableData><TableUnit>calories</TableUnit></TableData>
+                                        <TableData>
+                                            <TableInput value={dinnerItem.name} onChange={handleDinnerChange(index)}/>
+                                        </TableData>
+                                        <TableData>
+                                            <TableInput value={dinnerItem.value} onChange={handleDinnerCalorieChange(index)}/>
+                                        </TableData>
+                                        <TableData>
+                                            <TableUnit>calories</TableUnit>
+                                        </TableData>
                                     </tr>)
                             }) :
                             <tr>
