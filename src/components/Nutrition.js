@@ -2,10 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux'
 
-import * as resultSelectors from '../selectors/resultSelectors';
-import * as dateSelector from '../selectors/dateSelector';
 import {
     ScrollableContainer,
     TableData,
@@ -46,13 +43,7 @@ export const Nutrition = ({
     listOfDinnerItems,
     setListOfDinnerItems
 }) => {
-    const selectDate = useSelector(dateSelector.selectedDate);
-    const breakfastItems = useSelector(resultSelectors.getBreakfastItems(selectDate)) || [];
-    const lunchItems = useSelector(resultSelectors.getLunchItems(selectDate));
-    const dinnerItems = useSelector(resultSelectors.getDinnerItems(selectDate));
-
     const handleBreakfastChange = (index) => event => {
-        console.log('handleBreakfastChange')
         let newBreakfastArray = [ ...listOfBreakfastItems ];
         newBreakfastArray[index].name = event.target.value;
 
@@ -67,7 +58,6 @@ export const Nutrition = ({
     }
 
     const handleLunchChange = (index) => event => {
-        console.log('handleLunchChange')
         let newLunchArray = [ ...listOfLunchItems ];
         newLunchArray[index].name = event.target.value;
 
@@ -95,6 +85,20 @@ export const Nutrition = ({
         setListOfDinnerItems(newDinenrArray);
     }
 
+    const handleBreakfastAdd = () => {
+        const breakfastObject = { type: 'nutrition', subtype: 'breakfast', unit: 'calories', name: '', value: '' };
+        setListOfBreakfastItems([ ...listOfBreakfastItems, breakfastObject ])
+    }
+
+    const handleLunchAdd = () => {
+        const lunchObject =  { type: 'nutrition', subtype: 'lunch', unit: 'calories', name: '', value: '' } ;
+        setListOfLunchItems([ ...listOfLunchItems, lunchObject ])
+    }
+
+    const handleDinnerAdd = () => {
+        const dinnerObject = { type: 'nutrition', subtype: 'dinner', unit: 'calories', name: '', value: '' } ;
+        setListOfDinnerItems([ ...listOfDinnerItems, dinnerObject ])
+    }
 
     return (
         <>
@@ -110,31 +114,25 @@ export const Nutrition = ({
                         </TableHeaderRow>
                     </thead>
                     <tbody>
-                        {breakfastItems?.length > 0 ?
-                            breakfastItems?.map((breakfastItem, index)=> {
-                                return (
-                                    <tr key={index}>
-                                        <TableData>
-                                            <TableInput value={breakfastItem.name} onChange={handleBreakfastChange(index)}/>
-                                        </TableData>
-                                        <TableData>
-                                            <TableInput
-                                                value={breakfastItem.value}
-                                                onChange={handleBreakfastCalorieChange(index)}
-                                            />
-                                        </TableData>
-                                        <TableData><TableUnit>calories</TableUnit></TableData>
-                                    </tr>)
-                            }) :
-                            <tr>
-                                <TableData><TableInput /></TableData>
-                                <TableData><TableInput/></TableData>
-                                <TableData><TableUnit>calories</TableUnit></TableData>
-                            </tr>}
+                        {listOfBreakfastItems?.map((breakfastItem, index)=> {
+                            return (
+                                <tr key={index}>
+                                    <TableData>
+                                        <TableInput value={breakfastItem.name} onChange={handleBreakfastChange(index)}/>
+                                    </TableData>
+                                    <TableData>
+                                        <TableInput
+                                            value={breakfastItem.value}
+                                            onChange={handleBreakfastCalorieChange(index)}
+                                        />
+                                    </TableData>
+                                    <TableData><TableUnit>calories</TableUnit></TableData>
+                                </tr>)
+                        }) }
                     </tbody>
                 </Table>
             </ScrollableContainer>
-            <AddButton>+ Add another breakfast item</AddButton>
+            <AddButton onClick={handleBreakfastAdd}>+ Add another breakfast item</AddButton>
             <br/>
             <ScrollableContainer>
                 <Table>
@@ -146,30 +144,24 @@ export const Nutrition = ({
                         </TableHeaderRow>
                     </thead>
                     <tbody>
-                        {lunchItems?.length > 0 ?
-                            lunchItems?.map((lunchItem, index)=> {
-                                return (
-                                    <tr key={index}>
-                                        <TableData>
-                                            <TableInput value={lunchItem.name} onChange={handleLunchChange(index)}/>
-                                        </TableData>
-                                        <TableData>
-                                            <TableInput value={lunchItem.value} onChange={handleLunchCalorieChange(index)}/>
-                                        </TableData>
-                                        <TableData>
-                                            <TableUnit>calories</TableUnit>
-                                        </TableData>
-                                    </tr>)
-                            }) :
-                            <tr>
-                                <TableData><TableInput /></TableData>
-                                <TableData><TableInput/></TableData>
-                                <TableData><TableUnit>calories</TableUnit></TableData>
-                            </tr>}
+                        { listOfLunchItems?.map((lunchItem, index)=> {
+                            return (
+                                <tr key={index}>
+                                    <TableData>
+                                        <TableInput value={lunchItem.name} onChange={handleLunchChange(index)}/>
+                                    </TableData>
+                                    <TableData>
+                                        <TableInput value={lunchItem.value} onChange={handleLunchCalorieChange(index)}/>
+                                    </TableData>
+                                    <TableData>
+                                        <TableUnit>calories</TableUnit>
+                                    </TableData>
+                                </tr>)
+                        }) }
                     </tbody>
                 </Table>
             </ScrollableContainer>
-            <AddButton>+ Add another lunch item</AddButton>
+            <AddButton onClick={handleLunchAdd}>+ Add another lunch item</AddButton>
             <ScrollableContainer>
                 <Table>
                     <thead>
@@ -180,31 +172,26 @@ export const Nutrition = ({
                         </TableHeaderRow>
                     </thead>
                     <tbody>
-                        {dinnerItems?.length > 0 ?
-                            dinnerItems?.map((dinnerItem, index)=> {
-                                return (
-                                    <tr key={index}>
-                                        <TableData>
-                                            <TableInput value={dinnerItem.name} onChange={handleDinnerChange(index)}/>
-                                        </TableData>
-                                        <TableData>
-                                            <TableInput value={dinnerItem.value} onChange={handleDinnerCalorieChange(index)}/>
-                                        </TableData>
-                                        <TableData>
-                                            <TableUnit>calories</TableUnit>
-                                        </TableData>
-                                    </tr>
-                                )
-                            }) :
-                            <tr>
-                                <TableData><TableInput /></TableData>
-                                <TableData><TableInput/></TableData>
-                                <TableData><TableUnit>calories</TableUnit></TableData>
-                            </tr>}
+                        { listOfDinnerItems?.map((dinnerItem, index)=> {
+                            return (
+                                <tr key={index}>
+                                    <TableData>
+                                        <TableInput value={dinnerItem.name} onChange={handleDinnerChange(index)}/>
+                                    </TableData>
+                                    <TableData>
+                                        <TableInput value={dinnerItem.value} onChange={handleDinnerCalorieChange(index)}/>
+                                    </TableData>
+                                    <TableData>
+                                        <TableUnit>calories</TableUnit>
+                                    </TableData>
+                                </tr>
+                            )
+                        })
+                        }
                     </tbody>
                 </Table>
             </ScrollableContainer>
-            <AddButton>+ Add another dinner item</AddButton>
+            <AddButton onClick={handleDinnerAdd}>+ Add another dinner item</AddButton>
         </>
     )
 }
