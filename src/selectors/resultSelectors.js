@@ -36,27 +36,30 @@ export const exerciseResultSum = (date) => (state) => {
 
 export const getExercises = (date) => (state) => {
     const exercises = state.resultsFetched[date]?.exercise?.filter(item => item.type === 'exercise' );
-    return exercises || [];
+    return exercises?.length > 0 ? exercises : [ { type: 'exercise', subtype: 'exercise', unit: 'minutes', name: '', value: '' } ];
 }
 
 export const getWaterQuantities = (date) => (state) => {
     const waterQuantities = state.resultsFetched[date]?.water?.filter(item => item.type === 'water');
-    return waterQuantities;
+    return waterQuantities?.length > 0 ?
+        waterQuantities : [ { type: 'water', subtype: 'water', unit: 'ounces', name: 'water', value: '' } ];
 }
 
 export const getBreakfastItems = (date) => (state) => {
     const breakfastItems = state.resultsFetched[date]?.nutrition?.filter(item => item.subtype === 'breakfast');
-    return breakfastItems;
+    return breakfastItems?.length > 0 ?
+        breakfastItems :  [ { type: 'nutrition', subtype: 'breakfast', unit: 'calories', name: '', value: '' } ];
 }
 
 export const getLunchItems = (date) => (state) => {
     const lunchItems = state.resultsFetched[date]?.nutrition?.filter(item => item.subtype === 'lunch');
-    return lunchItems;
+    return lunchItems?.length > 0 ? lunchItems : [ { type: 'nutrition', subtype: 'lunch', unit: 'calories', name: '', value: '' } ];
 }
 
 export const getDinnerItems = (date) => (state) => {
     const dinnerItems = state.resultsFetched[date]?.nutrition?.filter(item => item.subtype === 'dinner');
-    return dinnerItems;
+    return dinnerItems?.length > 0 ?
+        dinnerItems : [ { type: 'nutrition', subtype: 'dinner', unit: 'calories', name: '', value: '' } ];
 }
 
 export const resultsFetchComplete = (date, userUniqueId) => (state) => {

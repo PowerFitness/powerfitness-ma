@@ -2,7 +2,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux'
 import {
     ScrollableContainer,
     TableData,
@@ -12,8 +11,6 @@ import {
     TableInput,
     TableUnit
 } from './toolkit/TableComponents';
-import * as dateSelector from '../selectors/dateSelector';
-import * as resultSelector from '../selectors/resultSelectors'
 
 const ExerciseHeader = styled.div`
     font-family: Helvetica;
@@ -37,19 +34,14 @@ const AddButton = styled.button `
 `
 
 export const Exercise = ({ listOfExercises, setListOfExercises }) => {
-    const selectDate = useSelector(dateSelector.selectedDate);
-    const exercises = useSelector(resultSelector.getExercises(selectDate));
-
     const handleOnExerciseNameChange = (index) => event => {
-        console.log('handleOnExerciseNameChange')
         let newExercisesArray = [ ...listOfExercises ];
-        newExercisesArray[index].name = event.target.value;
 
+        newExercisesArray[index].name = event.target.value;
         setListOfExercises(newExercisesArray);
     }
 
     const handleOnExerciseTimeChange = (index) => event => {
-        console.log('handleOnExerciseTimeChange')
         let newExercisesArray = [ ...listOfExercises ];
         newExercisesArray[index].value = event.target.value;
 
@@ -57,7 +49,8 @@ export const Exercise = ({ listOfExercises, setListOfExercises }) => {
     }
 
     const handleAddExercise = () => {
-        console.log('got')
+        const newExercise =  { type: 'exercise', subtype: 'exercise', unit: 'minutes', name: '', value: '' } ;
+        setListOfExercises([ ...listOfExercises, newExercise ])
     }
 
     return(
@@ -74,28 +67,21 @@ export const Exercise = ({ listOfExercises, setListOfExercises }) => {
                         </TableHeaderRow>
                     </thead>
                     <tbody>
-                        {exercises?.length > 0 ?
-                            exercises?.map((exercise, index)=> {
-                                return (
-                                    <tr key={index}>
-                                        <TableData>
-                                            <TableInput value={exercise.name} onChange={handleOnExerciseNameChange(index)}/>
-                                        </TableData>
-                                        <TableData>
-                                            <TableInput value={exercise.value} onChange={handleOnExerciseTimeChange(index)}/>
-                                        </TableData>
-                                        <TableData>
-                                            <TableUnit>minutes</TableUnit>
-                                        </TableData>
-                                    </tr>
-                                )
-                            }) :
-                            <tr>
-                                <TableData><TableInput onChange={handleOnExerciseNameChange()}/></TableData>
-                                <TableData><TableInput onChange={handleOnExerciseTimeChange()}/></TableData>
-                                <TableData><TableUnit>minutes</TableUnit></TableData>
-                            </tr>
-                        }
+                        {listOfExercises?.map((exercise, index)=> {
+                            return (
+                                <tr key={index}>
+                                    <TableData>
+                                        <TableInput value={exercise.name} onChange={handleOnExerciseNameChange(index)}/>
+                                    </TableData>
+                                    <TableData>
+                                        <TableInput value={exercise.value} onChange={handleOnExerciseTimeChange(index)}/>
+                                    </TableData>
+                                    <TableData>
+                                        <TableUnit>minutes</TableUnit>
+                                    </TableData>
+                                </tr>
+                            )
+                        })}
                     </tbody>
                 </Table>
             </ScrollableContainer>

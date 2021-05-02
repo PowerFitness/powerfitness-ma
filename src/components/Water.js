@@ -2,10 +2,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux';
-
-import * as resultSelectors from '../selectors/resultSelectors';
-import * as dateSelector from '../selectors/dateSelector';
 import {
     ScrollableContainer,
     Table,
@@ -37,14 +33,16 @@ const AddWater = styled.button `
 `
 
 export const Water = ({ listOfWaterQuantities, setListOfWaterQuantities }) => {
-    const selectDate = useSelector(dateSelector.selectedDate);
-    const waterQuantities = useSelector(resultSelectors.getWaterQuantities(selectDate));
-
     const handleWaterQuantityChange = (index) => event => {
         let newWaterQuantitiArray = [ ...listOfWaterQuantities ];
         newWaterQuantitiArray[index].value = event.target.value;
 
         setListOfWaterQuantities(newWaterQuantitiArray)
+    }
+
+    const handleAddWater = () => {
+        const waterObject =  { type: 'water', subtype: 'water', unit: 'ounces', name: 'water', value: '' };
+        setListOfWaterQuantities([ ...listOfWaterQuantities, waterObject ])
     }
 
     return (
@@ -60,25 +58,20 @@ export const Water = ({ listOfWaterQuantities, setListOfWaterQuantities }) => {
                         </TableHeaderRow>
                     </thead>
                     <tbody>
-                        {waterQuantities?.length > 0 ?
-                            waterQuantities?.map((waterQuantity, index)=> {
-                                return (
-                                    <tr key={index}>
-                                        <TableData><TableInput
-                                            value={waterQuantity.value}
-                                            onChange={handleWaterQuantityChange(index)}/>
-                                        </TableData>
-                                        <TableData><TableUnit>ounces</TableUnit></TableData>
-                                    </tr>)
-                            }) :
-                            <tr>
-                                <TableData><TableInput /></TableData>
-                                <TableData><TableUnit>ounces</TableUnit></TableData>
-                            </tr>}
+                        { listOfWaterQuantities?.map((waterQuantity, index)=> {
+                            return (
+                                <tr key={index}>
+                                    <TableData><TableInput
+                                        value={waterQuantity.value}
+                                        onChange={handleWaterQuantityChange(index)}/>
+                                    </TableData>
+                                    <TableData><TableUnit>ounces</TableUnit></TableData>
+                                </tr>)
+                        })}
                     </tbody>
                 </Table>
             </ScrollableContainer>
-            <AddWater>+ Add another water entry</AddWater>
+            <AddWater onClick={handleAddWater}>+ Add another water entry</AddWater>
         </>
     )
 }

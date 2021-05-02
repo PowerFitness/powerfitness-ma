@@ -28,6 +28,7 @@ export const JournalPage = ({ saveResults }) => {
     const selectedDate = useSelector(dateSelector.selectedDate);
     const userId = useSelector(userSelector.userUniqueId)
     const isFetchComplete = useSelector(resultSelector.resultsFetchComplete(selectedDate, userId))
+
     // exercise component
     const exercises = useSelector(resultSelector.getExercises(selectedDate));
     const [ listOfExercises, setListOfExercises ] = useState(exercises)
@@ -50,7 +51,7 @@ export const JournalPage = ({ saveResults }) => {
         setListOfBreakfastItems(breakfastItems)
         setListOfLunchItems(lunchItems)
         setListOfDinnerItems(dinnerItems)
-    }, [ isFetchComplete ])
+    }, [ isFetchComplete, selectedDate ])
 
     const handleOnSave = async () => {
         await saveResults(
@@ -61,6 +62,10 @@ export const JournalPage = ({ saveResults }) => {
             listOfLunchItems,
             listOfDinnerItems
         );
+    }
+
+    const handleOnComplete = async () => {
+        await handleOnSave();
         history.push('/dashboard');
     }
 
@@ -69,9 +74,9 @@ export const JournalPage = ({ saveResults }) => {
             {isFetchComplete ?
                 <React.Fragment>
                     <SubHeader>
-                        <PrimaryButton onClick={handleOnSave}>Complete</PrimaryButton>
+                        <PrimaryButton onClick={handleOnComplete}>Complete</PrimaryButton>
                     </SubHeader>
-                    <DatePicker/>
+                    <DatePicker onNext={handleOnSave} onPrev={handleOnSave}/>
                     <Activities>
                         <Exercise listOfExercises={listOfExercises} setListOfExercises={setListOfExercises}/>
                         <Water listOfWaterQuantities={listOfWaterQuantities} setListOfWaterQuantities={setListOfWaterQuantities}/>
