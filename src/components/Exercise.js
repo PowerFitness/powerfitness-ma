@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-key */
-import React, { useState } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux';
-import * as resultSelectors from '../selectors/resultSelectors';
-import * as dateSelector from '../selectors/dateSelector';
+import { useSelector } from 'react-redux'
 import {
     ScrollableContainer,
     TableData,
@@ -13,6 +12,8 @@ import {
     TableInput,
     TableUnit
 } from './toolkit/TableComponents';
+import * as dateSelector from '../selectors/dateSelector';
+import * as resultSelector from '../selectors/resultSelectors'
 
 const ExerciseHeader = styled.div`
     font-family: Helvetica;
@@ -35,12 +36,12 @@ const AddButton = styled.button `
     cursor: pointer;
 `
 
-export const Exercise = () => {
+export const Exercise = ({ listOfExercises, setListOfExercises }) => {
     const selectDate = useSelector(dateSelector.selectedDate);
-    const exercises = useSelector(resultSelectors.getExercises(selectDate));
-    const [ listOfExercises, setListOfExercises ] = useState(exercises)
+    const exercises = useSelector(resultSelector.getExercises(selectDate));
 
-    const handleOnExerciseNameChage = (index) => event => {
+    const handleOnExerciseNameChange = (index) => event => {
+        console.log('handleOnExerciseNameChange')
         let newExercisesArray = [ ...listOfExercises ];
         newExercisesArray[index].name = event.target.value;
 
@@ -48,10 +49,15 @@ export const Exercise = () => {
     }
 
     const handleOnExerciseTimeChange = (index) => event => {
+        console.log('handleOnExerciseTimeChange')
         let newExercisesArray = [ ...listOfExercises ];
         newExercisesArray[index].value = event.target.value;
 
         setListOfExercises(newExercisesArray);
+    }
+
+    const handleAddExercise = () => {
+        console.log('got')
     }
 
     return(
@@ -73,7 +79,7 @@ export const Exercise = () => {
                                 return (
                                     <tr key={index}>
                                         <TableData>
-                                            <TableInput value={exercise.name} onChange={handleOnExerciseNameChage(index)}/>
+                                            <TableInput value={exercise.name} onChange={handleOnExerciseNameChange(index)}/>
                                         </TableData>
                                         <TableData>
                                             <TableInput value={exercise.value} onChange={handleOnExerciseTimeChange(index)}/>
@@ -81,22 +87,28 @@ export const Exercise = () => {
                                         <TableData>
                                             <TableUnit>minutes</TableUnit>
                                         </TableData>
-                                        <hr/>
-                                    </tr>)
+                                    </tr>
+                                )
                             }) :
                             <tr>
-                                <TableData><TableInput /></TableData>
-                                <TableData><TableInput/></TableData>
+                                <TableData><TableInput onChange={handleOnExerciseNameChange()}/></TableData>
+                                <TableData><TableInput onChange={handleOnExerciseTimeChange()}/></TableData>
                                 <TableData><TableUnit>minutes</TableUnit></TableData>
-                            </tr>}
+                            </tr>
+                        }
                     </tbody>
                 </Table>
             </ScrollableContainer>
-            <AddButton>+ Add another exercise</AddButton>
+            <AddButton onClick={handleAddExercise}>+ Add another exercise</AddButton>
             <br/>
         </>
 
     )
 }
+
+Exercise.propTypes = {
+    listOfExercises: PropTypes.array,
+    setListOfExercises: PropTypes.func
+};
 
 export default Exercise;

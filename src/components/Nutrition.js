@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key */
-import React, { useState } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 
@@ -37,16 +38,21 @@ const AddButton = styled.button `
     cursor: pointer;
 `
 
-export const Nutrition = () => {
+export const Nutrition = ({
+    listOfBreakfastItems,
+    setListOfBreakfastItems,
+    listOfLunchItems,
+    setListOfLunchItems,
+    listOfDinnerItems,
+    setListOfDinnerItems
+}) => {
     const selectDate = useSelector(dateSelector.selectedDate);
     const breakfastItems = useSelector(resultSelectors.getBreakfastItems(selectDate)) || [];
     const lunchItems = useSelector(resultSelectors.getLunchItems(selectDate));
     const dinnerItems = useSelector(resultSelectors.getDinnerItems(selectDate));
-    const [ listOfBreakfastItems, setListOfBreakfastItems ] = useState(breakfastItems)
-    const [ listOfLunchItems, setListOfLunchItems ] = useState(lunchItems)
-    const [ listOfDinnerItems, setListOfDinnerItems ] = useState(dinnerItems)
 
     const handleBreakfastChange = (index) => event => {
+        console.log('handleBreakfastChange')
         let newBreakfastArray = [ ...listOfBreakfastItems ];
         newBreakfastArray[index].name = event.target.value;
 
@@ -61,6 +67,7 @@ export const Nutrition = () => {
     }
 
     const handleLunchChange = (index) => event => {
+        console.log('handleLunchChange')
         let newLunchArray = [ ...listOfLunchItems ];
         newLunchArray[index].name = event.target.value;
 
@@ -110,9 +117,11 @@ export const Nutrition = () => {
                                         <TableData>
                                             <TableInput value={breakfastItem.name} onChange={handleBreakfastChange(index)}/>
                                         </TableData>
-                                        <TableData><TableInput
-                                            value={breakfastItem.value}
-                                            onChange={handleBreakfastCalorieChange(index)}/>
+                                        <TableData>
+                                            <TableInput
+                                                value={breakfastItem.value}
+                                                onChange={handleBreakfastCalorieChange(index)}
+                                            />
                                         </TableData>
                                         <TableData><TableUnit>calories</TableUnit></TableData>
                                     </tr>)
@@ -184,7 +193,8 @@ export const Nutrition = () => {
                                         <TableData>
                                             <TableUnit>calories</TableUnit>
                                         </TableData>
-                                    </tr>)
+                                    </tr>
+                                )
                             }) :
                             <tr>
                                 <TableData><TableInput /></TableData>
@@ -198,5 +208,14 @@ export const Nutrition = () => {
         </>
     )
 }
+
+Nutrition.propTypes = {
+    listOfBreakfastItems: PropTypes.array,
+    setListOfBreakfastItems: PropTypes.func,
+    listOfLunchItems: PropTypes.array,
+    setListOfLunchItems: PropTypes.func,
+    listOfDinnerItems: PropTypes.array,
+    setListOfDinnerItems: PropTypes.func,
+};
 
 export default Nutrition;

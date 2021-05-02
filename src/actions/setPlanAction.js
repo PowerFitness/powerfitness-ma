@@ -35,6 +35,6 @@ export const savePlan = (motivStat, weeklyExercise, dailyExercise, water, calori
         await axios.put('/api/powerfitness/plan', plan)
         dispatch(refetchPlan(userUniqueId));
     } catch (e) {
-        console.log(e)
+        console.error(e)
     }
 }
