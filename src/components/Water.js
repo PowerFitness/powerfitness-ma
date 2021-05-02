@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key */
-import React, { useState } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux';
 
@@ -35,10 +36,9 @@ const AddWater = styled.button `
     margin: 4px 0 50px 14px;
 `
 
-export const Water = () => {
+export const Water = ({ listOfWaterQuantities, setListOfWaterQuantities }) => {
     const selectDate = useSelector(dateSelector.selectedDate);
     const waterQuantities = useSelector(resultSelectors.getWaterQuantities(selectDate));
-    const [ listOfWaterQuantities, setListOfWaterQuantities ] = useState(waterQuantities);
 
     const handleWaterQuantityChange = (index) => event => {
         let newWaterQuantitiArray = [ ...listOfWaterQuantities ];
@@ -82,5 +82,10 @@ export const Water = () => {
         </>
     )
 }
+
+Water.propTypes = {
+    listOfWaterQuantities: PropTypes.array,
+    setListOfWaterQuantities: PropTypes.func
+};
 
 export default Water;
