@@ -1,9 +1,7 @@
 /* eslint-disable react/jsx-key */
-import React, { useState } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux';
-import * as resultSelectors from '../selectors/resultSelectors';
-import * as dateSelector from '../selectors/dateSelector';
 import {
     ScrollableContainer,
     TableData,
@@ -35,15 +33,11 @@ const AddButton = styled.button `
     cursor: pointer;
 `
 
-export const Exercise = () => {
-    const selectDate = useSelector(dateSelector.selectedDate);
-    const exercises = useSelector(resultSelectors.getExercises(selectDate));
-    const [ listOfExercises, setListOfExercises ] = useState(exercises)
-
-    const handleOnExerciseNameChage = (index) => event => {
+export const Exercise = ({ listOfExercises, setListOfExercises }) => {
+    const handleOnExerciseNameChange = (index) => event => {
         let newExercisesArray = [ ...listOfExercises ];
-        newExercisesArray[index].name = event.target.value;
 
+        newExercisesArray[index].name = event.target.value;
         setListOfExercises(newExercisesArray);
     }
 
@@ -52,6 +46,11 @@ export const Exercise = () => {
         newExercisesArray[index].value = event.target.value;
 
         setListOfExercises(newExercisesArray);
+    }
+
+    const handleAddExercise = () => {
+        const newExercise =  { type: 'exercise', subtype: 'exercise', unit: 'minutes', name: '', value: '' } ;
+        setListOfExercises([ ...listOfExercises, newExercise ])
     }
 
     return(
@@ -68,35 +67,34 @@ export const Exercise = () => {
                         </TableHeaderRow>
                     </thead>
                     <tbody>
-                        {exercises?.length > 0 ?
-                            exercises?.map((exercise, index)=> {
-                                return (
-                                    <tr key={index}>
-                                        <TableData>
-                                            <TableInput value={exercise.name} onChange={handleOnExerciseNameChage(index)}/>
-                                        </TableData>
-                                        <TableData>
-                                            <TableInput value={exercise.value} onChange={handleOnExerciseTimeChange(index)}/>
-                                        </TableData>
-                                        <TableData>
-                                            <TableUnit>minutes</TableUnit>
-                                        </TableData>
-                                        <hr/>
-                                    </tr>)
-                            }) :
-                            <tr>
-                                <TableData><TableInput /></TableData>
-                                <TableData><TableInput/></TableData>
-                                <TableData><TableUnit>minutes</TableUnit></TableData>
-                            </tr>}
+                        {listOfExercises?.map((exercise, index)=> {
+                            return (
+                                <tr key={index}>
+                                    <TableData>
+                                        <TableInput value={exercise.name} onChange={handleOnExerciseNameChange(index)}/>
+                                    </TableData>
+                                    <TableData>
+                                        <TableInput value={exercise.value} onChange={handleOnExerciseTimeChange(index)}/>
+                                    </TableData>
+                                    <TableData>
+                                        <TableUnit>minutes</TableUnit>
+                                    </TableData>
+                                </tr>
+                            )
+                        })}
                     </tbody>
                 </Table>
             </ScrollableContainer>
-            <AddButton>+ Add another exercise</AddButton>
+            <AddButton onClick={handleAddExercise}>+ Add another exercise</AddButton>
             <br/>
         </>
 
     )
 }
+
+Exercise.propTypes = {
+    listOfExercises: PropTypes.array,
+    setListOfExercises: PropTypes.func
+};
 
 export default Exercise;

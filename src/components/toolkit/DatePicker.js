@@ -39,7 +39,7 @@ const Date = styled.div`
   margin: 3px 10px 0 10px;
 `
 
-export const DatePicker = () => {
+export const DatePicker = ({ onNext, onPrev }) => {
     const selectedDate = useSelector(dateSelector.selectedDate);
     const cDate = dayjs(selectedDate).format('dddd, MMMM D, YYYY')
     const dispatch = useDispatch()
@@ -47,10 +47,12 @@ export const DatePicker = () => {
     const prevDate = () => {
         const pDate = dayjs(cDate).subtract('1', 'day').format('YYYY-MM-DD');
         dispatch(dateActions.setDateAction(pDate))
+        if(onPrev) onPrev()
     };
     const nextDate = () => {
         const nDate = dayjs(cDate).add('1', 'day').format('YYYY-MM-DD');
         dispatch(dateActions.setDateAction(nDate))
+        if(onNext) onNext()
     };
     return (
         <DatePickerContainer>
