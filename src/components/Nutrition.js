@@ -35,6 +35,11 @@ const AddButton = styled.button `
     cursor: pointer;
 `
 
+const MaxTableData = styled(TableData)`
+    width: 450px;
+    max-width: 450px;
+`;
+
 export const Nutrition = ({
     listOfBreakfastItems,
     setListOfBreakfastItems,
@@ -117,15 +122,15 @@ export const Nutrition = ({
                         {listOfBreakfastItems?.map((breakfastItem, index)=> {
                             return (
                                 <tr key={index}>
-                                    <TableData>
+                                    <MaxTableData>
                                         <TableInput value={breakfastItem.name} onChange={handleBreakfastChange(index)}/>
-                                    </TableData>
-                                    <TableData>
+                                    </MaxTableData>
+                                    <MaxTableData>
                                         <TableInput
                                             value={breakfastItem.value}
                                             onChange={handleBreakfastCalorieChange(index)}
                                         />
-                                    </TableData>
+                                    </MaxTableData>
                                     <TableData><TableUnit>calories</TableUnit></TableData>
                                 </tr>)
                         }) }
@@ -147,12 +152,12 @@ export const Nutrition = ({
                         { listOfLunchItems?.map((lunchItem, index)=> {
                             return (
                                 <tr key={index}>
-                                    <TableData>
+                                    <MaxTableData>
                                         <TableInput value={lunchItem.name} onChange={handleLunchChange(index)}/>
-                                    </TableData>
-                                    <TableData>
+                                    </MaxTableData>
+                                    <MaxTableData>
                                         <TableInput value={lunchItem.value} onChange={handleLunchCalorieChange(index)}/>
-                                    </TableData>
+                                    </MaxTableData>
                                     <TableData>
                                         <TableUnit>calories</TableUnit>
                                     </TableData>
@@ -175,12 +180,12 @@ export const Nutrition = ({
                         { listOfDinnerItems?.map((dinnerItem, index)=> {
                             return (
                                 <tr key={index}>
-                                    <TableData>
+                                    <MaxTableData>
                                         <TableInput value={dinnerItem.name} onChange={handleDinnerChange(index)}/>
-                                    </TableData>
-                                    <TableData>
+                                    </MaxTableData>
+                                    <MaxTableData>
                                         <TableInput value={dinnerItem.value} onChange={handleDinnerCalorieChange(index)}/>
-                                    </TableData>
+                                    </MaxTableData>
                                     <TableData>
                                         <TableUnit>calories</TableUnit>
                                     </TableData>

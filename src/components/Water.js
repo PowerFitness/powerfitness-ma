@@ -32,6 +32,11 @@ const AddWater = styled.button `
     margin: 4px 0 50px 14px;
 `
 
+const MaxTableData = styled(TableData)`
+    width: 450px;
+    max-width: 450px;
+`;
+
 export const Water = ({ listOfWaterQuantities, setListOfWaterQuantities }) => {
     const handleWaterQuantityChange = (index) => event => {
         let newWaterQuantitiArray = [ ...listOfWaterQuantities ];
@@ -61,10 +66,10 @@ export const Water = ({ listOfWaterQuantities, setListOfWaterQuantities }) => {
                         { listOfWaterQuantities?.map((waterQuantity, index)=> {
                             return (
                                 <tr key={index}>
-                                    <TableData><TableInput
+                                    <MaxTableData><TableInput
                                         value={waterQuantity.value}
                                         onChange={handleWaterQuantityChange(index)}/>
-                                    </TableData>
+                                    </MaxTableData>
                                     <TableData><TableUnit>ounces</TableUnit></TableData>
                                 </tr>)
                         })}

@@ -23,7 +23,8 @@ export const TableInput = styled.input`
     height: 30px;
     border-radius: 8px;
     border: 1px solid #BDBDBD;
-    width: 370px;
+    width: 400px;
+    box-sizing: border-box;
 
     @media (max-width: 768px) {
         width: 200px;
@@ -35,5 +36,5 @@ export const TableUnit = styled.span`
 `;
 
 export const TableData = styled.td`
-    padding: 5px 0;    
+    padding: 5px 0;  
 `
