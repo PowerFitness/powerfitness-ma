@@ -33,6 +33,11 @@ const AddButton = styled.button `
     cursor: pointer;
 `
 
+const MaxTableData = styled(TableData)`
+    width: 450px;
+    max-width: 450px;
+`;
+
 export const Exercise = ({ listOfExercises, setListOfExercises }) => {
     const handleOnExerciseNameChange = (index) => event => {
         let newExercisesArray = [ ...listOfExercises ];
@@ -70,12 +75,12 @@ export const Exercise = ({ listOfExercises, setListOfExercises }) => {
                         {listOfExercises?.map((exercise, index)=> {
                             return (
                                 <tr key={index}>
-                                    <TableData>
+                                    <MaxTableData>
                                         <TableInput value={exercise.name} onChange={handleOnExerciseNameChange(index)}/>
-                                    </TableData>
-                                    <TableData>
+                                    </MaxTableData>
+                                    <MaxTableData>
                                         <TableInput value={exercise.value} onChange={handleOnExerciseTimeChange(index)}/>
-                                    </TableData>
+                                    </MaxTableData>
                                     <TableData>
                                         <TableUnit>minutes</TableUnit>
                                     </TableData>
