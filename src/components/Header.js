@@ -76,7 +76,7 @@ export const Header = () => {
         <NavLink selected={pathname=='/dashboard'}  to="/dashboard">Dashboard</NavLink>
         <NavLink selected={pathname=='/plan'} to="/plan">Fitness Planning</NavLink>
         <NavLink selected={pathname=='/journal'} to="/journal">Daily Journal</NavLink>
-        <Account selected={pathname=='/myAccount'} to="/myAccount" onClick={clickMyAccount}>My Account
+        <Account  onClick={clickMyAccount}>My Account
             {isOpen? <MyAccount/> : null}
         </Account>
     </DesktopHeader>
@@ -89,7 +89,7 @@ export const Header = () => {
                     <NavLink selected={pathname=='/dashboard'} onClick={clickMenu} to="/dashboard">Dashboard</NavLink>
                     <NavLink selected={pathname=='/plan'} onClick={clickMenu} to="/plan">Fitness Planning</NavLink>
                     <NavLink selected={pathname=='/journal'} onClick={clickMenu} to="/journal">Daily Journal</NavLink>
-                    <Account selected={pathname=='/myAccount'} to="/myAccount" onClick={clickMyAccount}>My Account
+                    <Account onClick={clickMyAccount}>My Account
                         {isOpen? <MyAccount/> : null}
                     </Account>
                 </MobileMenu> : null
