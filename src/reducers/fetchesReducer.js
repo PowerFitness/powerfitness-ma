@@ -1,6 +1,6 @@
 import { actionTypes } from '../components/fetches/useFetch';
 
-export const userReducer = (state = {}, action) => {
+export const fetchesReducer = (state = {}, action) => {
     if (action.type.includes(actionTypes.fetchStarted(''))) {
         return { ...state, [action.payload.url]: 'started' };
     }
@@ -17,4 +17,4 @@ export const userReducer = (state = {}, action) => {
     return state;
 }
 
-export default userReducer;
+export default fetchesReducer;
