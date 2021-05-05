@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "NODE_APP_INSTANCE=local webpack-dev-server",
-    "test": "jest --coverage",
+    "test": "jest",
     "lint": "eslint . --fix"
   },
   "husky": {
@@ -31,6 +31,7 @@
     "@babel/plugin-transform-runtime": "^7.13.10",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "@testing-library/react": "^11.2.6",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.0.2",
     "copy-webpack-plugin": "^5.1.2",
