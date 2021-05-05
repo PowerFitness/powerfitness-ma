@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import * as d3 from 'd3';
-import { useColorIndication } from './useColorIndication';
-import * as goalSelectors from './selectors/goalSelectors';
+import { useColorIndication } from '../utils/useColorIndication';
+import * as goalSelectors from '../selectors/goalSelectors';
 import { useSelector } from 'react-redux';
-import { GOAL_NAMES } from './constants/goalNames';
-import * as resultSelectors from './selectors/resultSelectors';
-import * as dateSelector from './selectors/dateSelector';
+import { GOAL_NAMES } from '../constants/goalNames';
+import * as resultSelectors from '../selectors/resultSelectors';
+import * as dateSelector from '../selectors/dateSelector';
 
 const ProgressArc = (props) => {
     const { svgWidth, arcWidth, progressPercentage, colorIndicator, name, unit, goal, result } = props;

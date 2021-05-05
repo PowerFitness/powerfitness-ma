@@ -43,7 +43,7 @@ export const WelcomePrompt = () => {
                     It looks like you haven&#39;t set your fitness goals yet. Click
                     the button below to get started.
                 </TextDiv>
-                <Link to="/plan">
+                <Link to="/plan" data-testid="start-fitness-planning-navigation">
                     <PButton
                         height="80px"
                         width="300px"
