@@ -5,7 +5,7 @@ describe('resultsFormatter', ()  => {
         const results = [
             {
                 'id': 4,
-                'userUniqueId': 'y1YcqCmzXgN0zPknXjT5JAtn2Ko1',
+                'userUniqueId': 'abc',
                 'date': '2021-12-31T06:00:00.000Z',
                 'type': 'nutrition',
                 'subtype': 'breakfast',
@@ -17,7 +17,7 @@ describe('resultsFormatter', ()  => {
             },
             {
                 'id': 5,
-                'userUniqueId': 'y1YcqCmzXgN0zPknXjT5JAtn2Ko1',
+                'userUniqueId': 'abc',
                 'date': '2021-12-31T06:00:00.000Z',
                 'type': 'nutrition',
                 'subtype': 'dinner',
@@ -29,7 +29,7 @@ describe('resultsFormatter', ()  => {
             },
             {
                 'id': 6,
-                'userUniqueId': 'y1YcqCmzXgN0zPknXjT5JAtn2Ko1',
+                'userUniqueId': 'abc',
                 'date': '2021-12-31T06:00:00.000Z',
                 'type': 'nutrition',
                 'subtype': 'lunch',
@@ -41,7 +41,7 @@ describe('resultsFormatter', ()  => {
             },
             {
                 'id': 7,
-                'userUniqueId': 'y1YcqCmzXgN0zPknXjT5JAtn2Ko1',
+                'userUniqueId': 'abc',
                 'date': '2021-11-27T06:00:00.000Z',
                 'type': 'nutrition',
                 'subtype': 'lunch',
@@ -59,7 +59,7 @@ describe('resultsFormatter', ()  => {
                 [
                     {
                         'id': 4,
-                        'userUniqueId': 'y1YcqCmzXgN0zPknXjT5JAtn2Ko1',
+                        'userUniqueId': 'abc',
                         'date': '2021-12-31T06:00:00.000Z',
                         'type': 'nutrition',
                         'subtype': 'breakfast',
@@ -71,7 +71,7 @@ describe('resultsFormatter', ()  => {
                     },
                     {
                         'id': 5,
-                        'userUniqueId': 'y1YcqCmzXgN0zPknXjT5JAtn2Ko1',
+                        'userUniqueId': 'abc',
                         'date': '2021-12-31T06:00:00.000Z',
                         'type': 'nutrition',
                         'subtype': 'dinner',
@@ -83,7 +83,7 @@ describe('resultsFormatter', ()  => {
                     },
                     {
                         'id': 6,
-                        'userUniqueId': 'y1YcqCmzXgN0zPknXjT5JAtn2Ko1',
+                        'userUniqueId': 'abc',
                         'date': '2021-12-31T06:00:00.000Z',
                         'type': 'nutrition',
                         'subtype': 'lunch',
@@ -98,7 +98,7 @@ describe('resultsFormatter', ()  => {
                 nutrition: [
                     {
                         'id': 7,
-                        'userUniqueId': 'y1YcqCmzXgN0zPknXjT5JAtn2Ko1',
+                        'userUniqueId': 'abc',
                         'date': '2021-11-27T06:00:00.000Z',
                         'type': 'nutrition',
                         'subtype': 'lunch',
