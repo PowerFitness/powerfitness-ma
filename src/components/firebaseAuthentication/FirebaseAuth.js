@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const uiConfig = {
     signInFlow: 'popup',
-    signInSuccessUrl: '/dashboard',
+    // signInSuccessUrl: '/dashboard',
     signInOptions: [
         firebase.auth.EmailAuthProvider.PROVIDER_ID,
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
