@@ -3,7 +3,7 @@ import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
 
 jest.mock('../utils/getIdToken', () => ({
-    getIdToken: jest.fn(() => 'token')
+    getIdToken: jest.fn(() => Promise.resolve('token'))
 }))
 
 describe('setPlanAction', () => {
@@ -58,7 +58,7 @@ describe('setPlanAction', () => {
                 }
             ]
         }
-        mock.onPut('/api/powerfitness/plan', plan, { headers: { Authorization: 'Bearer token' } }).reply(200);
+        mock.onPut('/api/powerfitness/plan', plan).reply(200);
         await setPlanAction.savePlan(motivStat, weeklyExercise, dailyExercise, water, calorie)(dispatch, getState)
         expect(dispatch).toHaveBeenCalledWith({ type: 'refetch/plan', payload: {
             'url': '/api/powerfitness/plan?userUniqueId=abc'
