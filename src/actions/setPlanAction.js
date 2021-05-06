@@ -11,6 +11,7 @@ import {
 import * as goalSelectors from '../selectors/goalSelectors';
 import * as planSelectors from '../selectors/planSelectors';
 import * as userSelectors from '../selectors/userSelectors';
+import { getIdToken } from '../utils/getIdToken';
 
 export const setPlanAction = {
     SAVE_PLAN: 'SAVE_PLAN',
@@ -20,6 +21,7 @@ export const setPlanAction = {
 export const savePlan = (motivStat, weeklyExercise, dailyExercise, water, calorie) => async (dispatch, getState) => {
     try {
         const state = getState();
+        const token = await getIdToken();
         const userUniqueId = userSelectors.userUniqueId(state);
         const plan = {
             id: planSelectors.planId(state),
@@ -32,7 +34,7 @@ export const savePlan = (motivStat, weeklyExercise, dailyExercise, water, calori
                 { ...createDefaultCalorieGoal(calorie), id: goalSelectors.goalId(GOAL_NAMES.dailyCalories)(state) }
             ]
         }
-        await axios.put('/api/powerfitness/plan', plan)
+        await axios.put('/api/powerfitness/plan', plan, { headers: { Authorization: `Bearer ${token}` } })
         dispatch(refetchPlan(userUniqueId));
     } catch (e) {
         console.error(e)

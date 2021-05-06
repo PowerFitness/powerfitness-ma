@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { isFetchComplete, isFetchStarted, isFetchError } from '../../selectors/fetchSelectors';
+import { getIdToken } from '../../utils/getIdToken';
 
 export const actionTypes = {
     fetchStarted: (name) => `fetchStarted/${name}`,
@@ -18,9 +19,10 @@ export const useFetch = (url, name) => {
     useEffect(() => {
         (async () => {
             try {
+                const token = await getIdToken();
                 if (url && name && !isComplete && !isStarted && !isError) {
                     dispatch({ type: actionTypes.fetchStarted(name), payload: { url, name } });
-                    const fetchResponse = await axios.get(url);
+                    const fetchResponse = await axios.get(url, { headers: { Authorization: `Bearer ${token}` } });
                     dispatch({ type: actionTypes.fetchComplete(name), payload: { url, name, data: fetchResponse.data || null } })
                 }
             } catch (e) {
