@@ -20,19 +20,21 @@ justify-content: center;
 `
 const LeftArrow = styled(FontAwesomeIcon)`
   color: #0081AF;
-  font-size: 25px;
+  font-size: 22px;
   width: 33px;
+  cursor: pointer;
 `
 const RightArrow = styled(FontAwesomeIcon)`
   color: #0081AF;
-  font-size: 25px;
+  font-size: 22px;
   width: 33px;
+  cursor: pointer;
 `
 const Date = styled.div`
   text-align: center;
   color: #000;
   font-family: Helvetica;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 300;
   line-height: 18px;
   text-align: center;
