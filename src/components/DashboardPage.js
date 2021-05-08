@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 const DashButton = styled(PrimaryButton)`
 box-sizing: border-box;
 height: 37px;
-width: 200px;
+width: 220px;
 background-color: #FFF;
 border: 1px solid #0081AF;
 color: #0081AF;
@@ -29,7 +29,7 @@ border-radius: 8px;
 background: rgba(255,255,255,0.2);
 box-shadow: 0 2px 10px 0 #CACACA;
 min-height: 360px;
-width: 460px;
+width: 500px;
 margin-bottom: 20px;
 `
 const ShadowRCard = styled.div`
@@ -37,7 +37,7 @@ background: rgba(255,255,255,0.2);
 border-radius: 8px;
 box-shadow: 0 2px 10px 0 #CACACA;
 min-height: 360px;
-width: 460px;
+width: 500px;
 margin-bottom: 20px;
 
 `
