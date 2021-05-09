@@ -2,6 +2,10 @@ import * as setPlanAction from './setPlanAction';
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
 
+jest.mock('../utils/getIdToken', () => ({
+    getIdToken: jest.fn(() => Promise.resolve('token'))
+}))
+
 describe('setPlanAction', () => {
     test('save plan - with id', async () => {
         const motivStat = 'motiv';

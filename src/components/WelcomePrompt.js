@@ -32,6 +32,9 @@ padding: 20px 0 100px 0;
 `
 const PButton = styled(PrimaryButton)`
 margin: 0 0 150px 0;
+@media (max-width: 768px) {
+    width: 200px;
+}
 `
 export const WelcomePrompt = () => {
     const userName = useSelector(userSelectors.userName);

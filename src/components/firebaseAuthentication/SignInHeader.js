@@ -11,6 +11,15 @@ import * as uiActions from '../../actions/uiActions';
 
 const StyledPrimaryHeader = styled(PrimaryHeader)`
     justify-content: space-between;
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        
+        &&& {
+            padding: 10px 30px;
+        }
+    }
 `;
 
 const Logo = styled(NavLink)`

@@ -37,4 +37,7 @@ export const TableUnit = styled.span`
 
 export const TableData = styled.td`
     padding: 5px 0;  
+    width: ${props => props.width || 'auto'};
+    max-width: ${props => props.maxWidth || 'auto'};
+    text-align: ${props => props.textAlign || 'left'};
 `

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const PrimaryButton = styled.button`
     height: ${props => props.height || '37px'};
-    width: ${props => props.width || '200px'};
+    width: ${props => props.width || '220px'};
     border-radius: ${props => props.borderRadius || '8px'};
     border: none;
     color: white;

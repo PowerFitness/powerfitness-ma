@@ -11,6 +11,8 @@ import {
     TableInput,
     TableUnit
 } from './toolkit/TableComponents';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinusSquare } from '@fortawesome/free-regular-svg-icons';
 
 const ExerciseHeader = styled.div`
     font-family: Helvetica;
@@ -21,6 +23,7 @@ const ExerciseHeader = styled.div`
 const HorizontalLine = styled.hr`
     height: 5px;
     background-color: #C879FF;
+    border: none;
 `
 
 const AddButton = styled.button `
@@ -38,6 +41,17 @@ const MaxTableData = styled(TableData)`
     max-width: 450px;
 `;
 
+const MaxTableHeader = styled(TableHeader)`
+    width: 450px;
+    max-width: 450px;
+`;
+
+const DeleteIcon = styled(FontAwesomeIcon)`
+    color: #BDBDBD;
+    cursor: pointer;
+    margin: 0 20px;
+`;
+
 export const Exercise = ({ listOfExercises, setListOfExercises }) => {
     const handleOnExerciseNameChange = (index) => event => {
         let newExercisesArray = [ ...listOfExercises ];
@@ -47,15 +61,23 @@ export const Exercise = ({ listOfExercises, setListOfExercises }) => {
     }
 
     const handleOnExerciseTimeChange = (index) => event => {
-        let newExercisesArray = [ ...listOfExercises ];
-        newExercisesArray[index].value = event.target.value;
+        const { value } = event.target;
 
-        setListOfExercises(newExercisesArray);
+        if (!isNaN(Number(value))) {
+            let newExercisesArray = [ ...listOfExercises ];
+            newExercisesArray[index].value = value;
+
+            setListOfExercises(newExercisesArray);
+        }
     }
 
     const handleAddExercise = () => {
         const newExercise =  { type: 'exercise', subtype: 'exercise', unit: 'minutes', name: '', value: '' } ;
         setListOfExercises([ ...listOfExercises, newExercise ])
+    }
+
+    const handleExerciseDelete = (index) => () => {
+        setListOfExercises(listOfExercises.filter((_, i) => i !== index));
     }
 
     return(
@@ -66,9 +88,10 @@ export const Exercise = ({ listOfExercises, setListOfExercises }) => {
                 <Table>
                     <thead>
                         <TableHeaderRow>
-                            <TableHeader>Exercise Name</TableHeader>
-                            <TableHeader>Amount</TableHeader>
+                            <MaxTableHeader>Exercise Name</MaxTableHeader>
+                            <MaxTableHeader>Duration</MaxTableHeader>
                             <TableHeader>Unit</TableHeader>
+                            <TableHeader></TableHeader>
                         </TableHeaderRow>
                     </thead>
                     <tbody>
@@ -83,6 +106,9 @@ export const Exercise = ({ listOfExercises, setListOfExercises }) => {
                                     </MaxTableData>
                                     <TableData>
                                         <TableUnit>minutes</TableUnit>
+                                    </TableData>
+                                    <TableData textAlign="right">
+                                        <DeleteIcon onClick={handleExerciseDelete(index)} icon={faMinusSquare}/>
                                     </TableData>
                                 </tr>
                             )

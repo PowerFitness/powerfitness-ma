@@ -41,6 +41,13 @@ const StyledCard = styled(Card)`
     box-sizing: border-box;
 `;
 
+const GettingStartedButton = styled(PrimaryButton)`
+@media (max-width: 768px) {
+    width: 250px;
+    font-size: 24px;
+}
+`;
+
 export const SplashPage = () => {
     const dispatch = useDispatch();
     const isAuthenticated = useSelector(userSelectors.isAuthenticated);
@@ -66,14 +73,14 @@ export const SplashPage = () => {
                 </StyledCard>
 
             </div>
-            <PrimaryButton
+            <GettingStartedButton
                 height="80px"
                 width="500px"
                 borderRadius="50px"
                 fontSize="30px"
                 onClick={() => dispatch(uiActions.setUiAction({ isSignInOpen: true }))}>
                 Get started with PowerFitness
-            </PrimaryButton>
+            </GettingStartedButton>
         </div>
     </>
 }

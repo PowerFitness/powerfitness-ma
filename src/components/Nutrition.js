@@ -12,6 +12,8 @@ import {
     TableInput,
     TableUnit
 } from './toolkit/TableComponents';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinusSquare } from '@fortawesome/free-regular-svg-icons';
 
 const NutritionHeader = styled.th`
     font-family: Helvetica;
@@ -23,6 +25,7 @@ const NutritionHeader = styled.th`
 const HorizontalLine = styled.hr`
     height: 5px;
     background-color: #EF798A;
+    border: none;
 `
 
 const AddButton = styled.button `
@@ -38,6 +41,17 @@ const AddButton = styled.button `
 const MaxTableData = styled(TableData)`
     width: 450px;
     max-width: 450px;
+`;
+
+const MaxTableHeader = styled(TableHeader)`
+    width: 450px;
+    max-width: 450px;
+`;
+
+const DeleteIcon = styled(FontAwesomeIcon)`
+    cursor: pointer;
+    color: #BDBDBD;
+    margin: 0 20px;
 `;
 
 export const Nutrition = ({
@@ -56,10 +70,14 @@ export const Nutrition = ({
     }
 
     const handleBreakfastCalorieChange = (index) => event => {
-        let newBreakfastArray = [ ...listOfBreakfastItems ];
-        newBreakfastArray[index].value = event.target.value;
+        const { value } = event.target;
 
-        setListOfBreakfastItems(newBreakfastArray);
+        if (!isNaN(Number(value))) {
+            let newBreakfastArray = [ ...listOfBreakfastItems ];
+            newBreakfastArray[index].value = value;
+
+            setListOfBreakfastItems(newBreakfastArray);
+        }
     }
 
     const handleLunchChange = (index) => event => {
@@ -70,10 +88,14 @@ export const Nutrition = ({
     }
 
     const handleLunchCalorieChange = (index) => event => {
-        let newLunchArray = [ ...listOfLunchItems ];
-        newLunchArray[index].value = event.target.value;
+        const { value } = event.target;
 
-        setListOfLunchItems(newLunchArray);
+        if (!isNaN(Number(value))) {
+            let newLunchArray = [ ...listOfLunchItems ];
+            newLunchArray[index].value = value;
+
+            setListOfLunchItems(newLunchArray);
+        }
     }
 
     const handleDinnerChange = (index) => event => {
@@ -84,10 +106,14 @@ export const Nutrition = ({
     }
 
     const handleDinnerCalorieChange = (index) => event => {
-        let newDinenrArray = [ ...listOfDinnerItems ];
-        newDinenrArray[index].value = event.target.value;
+        const { value } = event.target;
 
-        setListOfDinnerItems(newDinenrArray);
+        if (!isNaN(Number(value))) {
+            let newDinenrArray = [ ...listOfDinnerItems ];
+            newDinenrArray[index].value = value;
+
+            setListOfDinnerItems(newDinenrArray);
+        }
     }
 
     const handleBreakfastAdd = () => {
@@ -105,6 +131,18 @@ export const Nutrition = ({
         setListOfDinnerItems([ ...listOfDinnerItems, dinnerObject ])
     }
 
+    const handleBreakfastDelete = (index) => () => {
+        setListOfBreakfastItems(listOfBreakfastItems.filter((_, i) => i !== index));
+    }
+
+    const handleLunchDelete = (index) => () => {
+        setListOfLunchItems(listOfLunchItems.filter((_, i) => i !== index));
+    }
+
+    const handleDinnerDelete = (index) => () => {
+        setListOfDinnerItems(listOfDinnerItems.filter((_, i) => i !== index));
+    }
+
     return (
         <>
             <NutritionHeader>Nutrition</NutritionHeader>
@@ -113,9 +151,10 @@ export const Nutrition = ({
                 <Table>
                     <thead>
                         <TableHeaderRow>
-                            <TableHeader>Breakfast</TableHeader>
-                            <TableHeader>Amount</TableHeader>
+                            <MaxTableHeader>Breakfast</MaxTableHeader>
+                            <MaxTableHeader>Amount</MaxTableHeader>
                             <TableHeader>Unit</TableHeader>
+                            <TableHeader></TableHeader>
                         </TableHeaderRow>
                     </thead>
                     <tbody>
@@ -132,6 +171,9 @@ export const Nutrition = ({
                                         />
                                     </MaxTableData>
                                     <TableData><TableUnit>calories</TableUnit></TableData>
+                                    <TableData textAlign="right">
+                                        <DeleteIcon onClick={handleBreakfastDelete(index)} icon={faMinusSquare}/>
+                                    </TableData>
                                 </tr>)
                         }) }
                     </tbody>
@@ -143,9 +185,10 @@ export const Nutrition = ({
                 <Table>
                     <thead>
                         <TableHeaderRow>
-                            <TableHeader>Lunch</TableHeader>
-                            <TableHeader>Amount</TableHeader>
+                            <MaxTableHeader>Lunch</MaxTableHeader>
+                            <MaxTableHeader>Amount</MaxTableHeader>
                             <TableHeader>Unit</TableHeader>
+                            <TableHeader></TableHeader>
                         </TableHeaderRow>
                     </thead>
                     <tbody>
@@ -161,6 +204,9 @@ export const Nutrition = ({
                                     <TableData>
                                         <TableUnit>calories</TableUnit>
                                     </TableData>
+                                    <TableData textAlign="right">
+                                        <DeleteIcon onClick={handleLunchDelete(index)} icon={faMinusSquare}/>
+                                    </TableData>
                                 </tr>)
                         }) }
                     </tbody>
@@ -171,9 +217,10 @@ export const Nutrition = ({
                 <Table>
                     <thead>
                         <TableHeaderRow>
-                            <TableHeader>Dinner</TableHeader>
-                            <TableHeader>Amount</TableHeader>
+                            <MaxTableHeader>Dinner</MaxTableHeader>
+                            <MaxTableHeader>Amount</MaxTableHeader>
                             <TableHeader>Unit</TableHeader>
+                            <TableHeader></TableHeader>
                         </TableHeaderRow>
                     </thead>
                     <tbody>
@@ -188,6 +235,9 @@ export const Nutrition = ({
                                     </MaxTableData>
                                     <TableData>
                                         <TableUnit>calories</TableUnit>
+                                    </TableData>
+                                    <TableData textAlign="right">
+                                        <DeleteIcon onClick={handleDinnerDelete(index)} icon={faMinusSquare}/>
                                     </TableData>
                                 </tr>
                             )
