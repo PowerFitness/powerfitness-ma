@@ -19,7 +19,6 @@ export const setPlanAction = {
 };
 
 export const savePlan = (motivStat, weeklyExercise, dailyExercise, water, calorie) => async (dispatch, getState) => {
-    console.log('save plan')
     try {
         const state = getState();
         const token = await getIdToken();

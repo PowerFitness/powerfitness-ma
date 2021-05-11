@@ -12,7 +12,9 @@ import axios from 'axios';
 describe('PlanPage', () => {
     test('Rendering PlanPage for new User', () => {
         renderWithReduxAndRouter(<PlanPage />, {
-            initialState: {}, route: '/plan'
+            initialState: {
+                user: { displayName: 'John Smith' }
+            }, route: '/plan'
         })
         expect(screen.getByText('Save')).toBeInTheDocument()
         expect(screen.getByText('Save').closest(PrimaryButton)).toBeDisabled()
