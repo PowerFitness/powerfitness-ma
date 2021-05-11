@@ -61,7 +61,6 @@ const FlexDiv = styled.div`
 export function ProgressCircleWrapper() {
     const svgWidth = 150;
     const arcWidth = 6;
-    // eslint-disable-next-line no-unused-vars
     const [ progressPercentage, setProgressPercentage ] = useState(50);
     const exerciseColor = useColorIndication(progressPercentage, '#C879FF');
     const waterColor = useColorIndication(progressPercentage, '#00ABE7');
@@ -108,5 +107,5 @@ export function ProgressCircleWrapper() {
         </FlexDiv>
     );
 }
-
+export default ProgressCircleWrapper;
 
