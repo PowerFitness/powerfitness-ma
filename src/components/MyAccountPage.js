@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { firebase } from '../utils/firebase';
 
@@ -19,7 +20,9 @@ color: black;
 `
 
 export const MyAccount = () => {
-    const clickLogOut = () =>{
+    const dispatch = useDispatch()
+    const clickLogOut = () => {
+        dispatch({ type: 'USER_LOGOUT' })
         firebase.auth().signOut();
     };
     return (
