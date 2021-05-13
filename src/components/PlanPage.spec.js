@@ -9,6 +9,23 @@ import renderWithRedux from '../testUtils/renderWithRedux';
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
 
+const setup = () => {
+    const utils = renderWithReduxAndRouter(<PlanPage />, {
+        initialState: {
+            user: { displayName: 'John Smith' }
+        }, route: '/plan'
+    })
+    const text = utils.getByTestId('Motiv')
+    const input1 = utils.getByTestId('weekly')
+    const input2 = utils.getByTestId('daily')
+    const input3 = utils.getByTestId('water')
+    const input4 = utils.getByTestId('calorie')
+    return {
+        text, input1, input2, input3, input4,
+        ...utils,
+    }
+}
+
 describe('PlanPage', () => {
     test('Rendering PlanPage for new User', () => {
         renderWithReduxAndRouter(<PlanPage />, {
@@ -23,6 +40,31 @@ describe('PlanPage', () => {
         expect(screen.getByText('How many minutes of exercise per day?')).toBeInTheDocument()
         expect(screen.getByText('How much water do you plan to drink per day?')).toBeInTheDocument()
         expect(screen.getByText('Set your daily caloric intake.')).toBeInTheDocument()
+    })
+    test('Event - handleMotivStatement', () => {
+        const { text } = setup()
+        fireEvent.change(text, { target: { value: 'Motivation' } })
+        expect(text.value).toBe('Motivation')
+    })
+    test('Event - handleDailyExercise', () => {
+        const { input1 } = setup()
+        fireEvent.change(input1, { target: { value: 2 } })
+        expect(input1.value).toBe('2')
+    })
+    test('Event - handleWeeklyExercise', () => {
+        const { input2 } = setup()
+        fireEvent.change(input2, { target: { value: 30 } })
+        expect(input2.value).toBe('30')
+    })
+    test('Event - handleWaterIntake', () => {
+        const { input3 } = setup()
+        fireEvent.change(input3, { target: { value: 70 } })
+        expect(input3.value).toBe('70')
+    })
+    test('Event - handleCalorieIntake', () => {
+        const { input4 } = setup()
+        fireEvent.change(input4, { target: { value: 2000 } })
+        expect(input4.value).toBe('2000')
     })
 
     test('PlanPage checks functionality for the user', () => {
