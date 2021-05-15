@@ -31,7 +31,11 @@ module.exports = {
         '<rootDir>/dist/',
         '<rootDir>/src/testUtils/',
         '<rootDir>/src/index.js',
+        '<rootDir>/src/App.js',
         '<rootDir>/src/utils/firebase.js',
+        '<rootDir>/src/utils/getIdToken.js',
+        '<rootDir>/src/components/firebaseAuthentication/FirebaseAuth.js',
+        '<rootDir>/src/components/firebaseAuthentication/AuthObserver.js',
         '<rootDir>/src/store.js'
     ],
 
