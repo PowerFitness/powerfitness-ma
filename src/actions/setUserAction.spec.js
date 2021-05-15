@@ -58,14 +58,20 @@ describe('setUserAction', () => {
     })
     test('observeLogin', () =>{
         const dispatch = jest.fn();
-        mockonAuthStateChanged.mockImplementationOnce(() => dispatch({
-            uid: 'abc',
-            displayName: 'John'
-        }))
+        mockonAuthStateChanged.mockImplementationOnce(() => {
+            dispatch({
+                uid: 'abc',
+                displayName: 'John'
+            });
+            dispatch({ type: 'setUiAction', payload: { isSignInOpen: false } });
+        })
         setUserAction.observeLogin(dispatch)
-        expect(dispatch).toHaveBeenCalledWith({
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
             uid: 'abc',
             displayName: 'John'
+        })
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+            type: 'setUiAction', payload: { isSignInOpen: false }
         })
     })
 })

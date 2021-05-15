@@ -57,7 +57,7 @@ export const DatePicker = ({ onNext, onPrev }) => {
         if(onNext) onNext()
     };
     return (
-        <DatePickerContainer>
+        <DatePickerContainer data-testid="DatePicker">
             <LeftArrow icon="chevron-left" onClick={prevDate} />
             <Date>{cDate}</Date>
             <RightArrow icon="chevron-right" onClick={nextDate} />

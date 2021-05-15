@@ -109,19 +109,20 @@ export const PlanPage = ({
             <Motivation>
                 <HeaderText>Motivation Statement</HeaderText>
                 <Text margin="11px 0 11px 0">Describe your motivation for achieving your fitness goals.</Text>
-                <TextArea height="100px" width="100%" type="Text" value={motivStat} onChange={handleMotivStatement}/>
+                <TextArea height="100px" width="100%" data-testid="Motiv" type="Text"
+                    value={motivStat} onChange={handleMotivStatement}/>
             </Motivation>
 
             <Exercise>
                 <HeaderText>Exercise</HeaderText>
                 <WeeklyExercise>
                     <Text margin="13px 0 11px 0">What is your weekly exercise goal?</Text>
-                    <InputBox value={weeklyExercise} onChange={handleWeeklyExercise}/>
+                    <InputBox value={weeklyExercise} data-testid="weekly" onChange={handleWeeklyExercise}/>
                     <TextSide>days per week</TextSide>
                 </WeeklyExercise>
                 <ExerciseMinutes>
                     <Text margin="0 0 11px 0">How many minutes of exercise per day?</Text>
-                    <InputBox value={dailyExercise} onChange={handleDailyExercise}/>
+                    <InputBox value={dailyExercise} data-testid="daily" onChange={handleDailyExercise}/>
                     <TextSide>minutes</TextSide>
                 </ExerciseMinutes>
             </Exercise>
@@ -129,14 +130,14 @@ export const PlanPage = ({
             <WaterIntake>
                 <HeaderText>Water Intake</HeaderText>
                 <Text margin="13px 0 11px 0">How much water do you plan to drink per day?</Text>
-                <InputBox value={water} onChange={handleWaterIntake}/>
+                <InputBox value={water} data-testid="water" onChange={handleWaterIntake}/>
                 <TextSide>ounces</TextSide>
             </WaterIntake>
 
             <Nutrition>
                 <HeaderText>Nutrition</HeaderText>
                 <Text margin="13px 0 11px 0">Set your daily caloric intake.</Text>
-                <InputBox value={calorie} onChange={handleCalorieIntake}/>
+                <InputBox value={calorie} data-testid="calorie" onChange={handleCalorieIntake}/>
                 <TextSide>calories</TextSide>
             </Nutrition>
         </>
