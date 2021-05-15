@@ -90,6 +90,7 @@ export const Water = ({ listOfWaterQuantities, setListOfWaterQuantities }) => {
                             return (
                                 <tr key={index}>
                                     <MaxTableData><TableInput
+                                        data-testid='water-input'
                                         value={waterQuantity.value}
                                         onChange={handleWaterQuantityChange(index)}/>
                                     </MaxTableData>
